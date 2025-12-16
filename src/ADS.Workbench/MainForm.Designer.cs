@@ -43,6 +43,7 @@
             this.btnBuildIso = new System.Windows.Forms.Button();
             this.btnSaveProfile = new System.Windows.Forms.Button();
             this.txtLog = new System.Windows.Forms.TextBox();
+            this.chkFrontLoadAssets = new System.Windows.Forms.CheckBox();
             this.panelHeader.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
             this.panelButtons.SuspendLayout();
@@ -104,14 +105,16 @@
             this.tableLayoutPanel.Controls.Add(this.lblIsoPath, 0, 3);
             this.tableLayoutPanel.Controls.Add(this.txtIsoPath, 1, 3);
             this.tableLayoutPanel.Controls.Add(this.btnBrowseIso, 2, 3);
+            this.tableLayoutPanel.Controls.Add(this.chkFrontLoadAssets, 1, 4);
             this.tableLayoutPanel.Location = new System.Drawing.Point(12, 88);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 4;
+            this.tableLayoutPanel.RowCount = 5;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(760, 128);
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel.Size = new System.Drawing.Size(760, 160);
             this.tableLayoutPanel.TabIndex = 0;
             // 
             // lblSharePath
@@ -230,6 +233,17 @@
             this.btnBrowseIso.UseVisualStyleBackColor = true;
             this.btnBrowseIso.Click += new System.EventHandler(this.BtnBrowseIso_Click);
             // 
+            // chkFrontLoadAssets
+            // 
+            this.chkFrontLoadAssets.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.chkFrontLoadAssets.AutoSize = true;
+            this.chkFrontLoadAssets.Location = new System.Drawing.Point(193, 133);
+            this.chkFrontLoadAssets.Name = "chkFrontLoadAssets";
+            this.chkFrontLoadAssets.Size = new System.Drawing.Size(324, 17);
+            this.chkFrontLoadAssets.TabIndex = 12;
+            this.chkFrontLoadAssets.Text = "Front-load all payload content into the ISO (offline deployment)";
+            this.chkFrontLoadAssets.UseVisualStyleBackColor = true;
+            // 
             // panelButtons
             // 
             this.panelButtons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -237,7 +251,7 @@
             this.panelButtons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(239)))), ((int)(((byte)(243)))));
             this.panelButtons.Controls.Add(this.btnBuildIso);
             this.panelButtons.Controls.Add(this.btnSaveProfile);
-            this.panelButtons.Location = new System.Drawing.Point(12, 222);
+            this.panelButtons.Location = new System.Drawing.Point(12, 260);
             this.panelButtons.Name = "panelButtons";
             this.panelButtons.Size = new System.Drawing.Size(760, 40);
             this.panelButtons.TabIndex = 1;
@@ -279,12 +293,12 @@
             this.txtLog.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtLog.Font = new System.Drawing.Font("Consolas", 9F);
-            this.txtLog.Location = new System.Drawing.Point(12, 268);
+            this.txtLog.Location = new System.Drawing.Point(12, 306);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtLog.Size = new System.Drawing.Size(760, 249);
+            this.txtLog.Size = new System.Drawing.Size(760, 211);
             this.txtLog.TabIndex = 2;
             // 
             // MainForm
@@ -292,7 +306,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(244)))), ((int)(((byte)(248)))));
-            this.ClientSize = new System.Drawing.Size(784, 529);
+            this.ClientSize = new System.Drawing.Size(784, 560);
             this.Controls.Add(this.txtLog);
             this.Controls.Add(this.panelButtons);
             this.Controls.Add(this.tableLayoutPanel);
@@ -321,15 +335,16 @@
         private System.Windows.Forms.Label lblSharePath;
         private System.Windows.Forms.TextBox txtSharePath;
         private System.Windows.Forms.Button btnBrowseShare;
-            private System.Windows.Forms.Label lblLayout;
-            private System.Windows.Forms.TextBox txtLayoutRoot;
-            private System.Windows.Forms.Button btnBrowseLayout;
-            private System.Windows.Forms.Label lblAdkRoot;
-            private System.Windows.Forms.TextBox txtAdkRoot;
+        private System.Windows.Forms.Label lblLayout;
+        private System.Windows.Forms.TextBox txtLayoutRoot;
+        private System.Windows.Forms.Button btnBrowseLayout;
+        private System.Windows.Forms.Label lblAdkRoot;
+        private System.Windows.Forms.TextBox txtAdkRoot;
         private System.Windows.Forms.Button btnBrowseAdk;
         private System.Windows.Forms.Label lblIsoPath;
         private System.Windows.Forms.TextBox txtIsoPath;
         private System.Windows.Forms.Button btnBrowseIso;
+        private System.Windows.Forms.CheckBox chkFrontLoadAssets;
         private System.Windows.Forms.Panel panelButtons;
         private System.Windows.Forms.Button btnBuildIso;
         private System.Windows.Forms.Button btnSaveProfile;

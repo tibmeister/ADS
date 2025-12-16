@@ -47,7 +47,8 @@ namespace ADS.Workbench
 
         private void BtnBuildIso_Click(object sender, EventArgs e)
         {
-            WriteLog("Build WinPE ISO is not yet implemented. It will orchestrate Build-WinPE.ps1 with the provided settings.");
+            var frontLoad = chkFrontLoadAssets.Checked ? "with front-loaded payloads" : "referencing share-based payloads";
+            WriteLog($"Build WinPE ISO is not yet implemented. It will orchestrate Build-WinPE.ps1 {frontLoad}.");
         }
 
         private void BrowseForFolder(TextBox target)
