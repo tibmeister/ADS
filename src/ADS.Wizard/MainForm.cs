@@ -139,6 +139,7 @@ namespace ADS.Wizard
                 DriverPackPath = string.IsNullOrWhiteSpace(txtDriverPackPath.Text) ? null : txtDriverPackPath.Text.Trim(),
                 UnattendTemplatePath = string.IsNullOrWhiteSpace(txtUnattendTemplatePath.Text) ? null : txtUnattendTemplatePath.Text.Trim(),
                 OdjBlobPath = string.IsNullOrWhiteSpace(txtOdjBlobPath.Text) ? null : txtOdjBlobPath.Text.Trim(),
+                FormatAdditionalDisks = chkFormatAdditionalDisks.Checked,
                 UseStaticIp = chkStaticIp.Checked,
                 StaticIpAddress = string.IsNullOrWhiteSpace(txtStaticIp.Text) ? null : txtStaticIp.Text.Trim(),
                 StaticSubnetMask = string.IsNullOrWhiteSpace(txtStaticSubnet.Text) ? null : txtStaticSubnet.Text.Trim(),

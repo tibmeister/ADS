@@ -374,4 +374,54 @@ function Invoke-ADSReboot {
     Invoke-ADSExternalCommand -FilePath $wpeutil -Arguments "reboot" -WhatIf:$WhatIf | Out-Null
 }
 
-Export-ModuleMember -Function Invoke-ADSNetworkingInit, Invoke-ADSDiskPartition, Set-ADSStaticNetwork, Invoke-ADSApplyImage, Invoke-ADSInjectDrivers, Invoke-ADSOfflinePackages, Set-ADSUnattendFile, Set-ADSPostInstallAssets, Invoke-ADSMakeBootable, Invoke-ADSReboot
+function Invoke-ADSFormatAdditionalDisks {
+    <#
+    .SYNOPSIS
+    Formats all non-OS disks.
+    .DESCRIPTION
+    Cleans and formats every disk except the target OS disk, creating a single NTFS partition per disk.
+    .EXAMPLES
+    Invoke-ADSFormatAdditionalDisks -OsDiskNumber 0
+    .NOTES
+    Destructive; intended for opt-in use.
+    #>
+    param(
+        # Disk number that contains the OS
+        [Parameter(Mandatory = $true)]
+        [int] $OsDiskNumber,
+        # When set, only logs intended actions
+        [switch] $WhatIf
+    )
+
+    $disks = Get-Disk | Where-Object { $_.Number -ne $OsDiskNumber }
+    if (-not $disks -or $disks.Count -eq 0) {
+        Write-ADSLog -Message "No additional disks detected; skipping format." -Level "INFO"
+        return
+    }
+
+    $scriptBuilder = New-Object System.Text.StringBuilder
+    foreach ($disk in $disks) {
+        $null = $scriptBuilder.AppendLine("select disk $($disk.Number)")
+        $null = $scriptBuilder.AppendLine("online disk noerr")
+        $null = $scriptBuilder.AppendLine("attributes disk clear readonly noerr")
+        $null = $scriptBuilder.AppendLine("clean")
+        $null = $scriptBuilder.AppendLine("convert gpt")
+        $null = $scriptBuilder.AppendLine("create partition primary")
+        $null = $scriptBuilder.AppendLine("format quick fs=ntfs label=`"Data$($disk.Number)`"")
+        $null = $scriptBuilder.AppendLine("assign")
+    }
+    $null = $scriptBuilder.AppendLine("exit")
+
+    $scriptPath = Join-Path -Path $env:TEMP -ChildPath "ads-extra-diskpart.txt"
+    $scriptBuilder.ToString() | Set-Content -Path $scriptPath -Encoding ASCII
+
+    if ($WhatIf) {
+        Write-ADSLog -Message "WHATIF: diskpart /s $scriptPath" -Level "INFO"
+        return
+    }
+
+    Write-ADSLog -Message "Formatting non-OS disks: $($disks.Number -join ', ')" -Level "INFO"
+    Invoke-ADSExternalCommand -FilePath "diskpart.exe" -Arguments "/s `"$scriptPath`"" | Out-Null
+}
+
+Export-ModuleMember -Function Invoke-ADSNetworkingInit, Invoke-ADSDiskPartition, Set-ADSStaticNetwork, Invoke-ADSApplyImage, Invoke-ADSInjectDrivers, Invoke-ADSOfflinePackages, Set-ADSUnattendFile, Set-ADSPostInstallAssets, Invoke-ADSMakeBootable, Invoke-ADSReboot, Invoke-ADSFormatAdditionalDisks

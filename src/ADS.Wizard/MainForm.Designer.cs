@@ -32,6 +32,8 @@
             this.numImageIndex = new System.Windows.Forms.NumericUpDown();
             this.lblTargetDisk = new System.Windows.Forms.Label();
             this.numTargetDisk = new System.Windows.Forms.NumericUpDown();
+            this.lblFormatAdditionalDisks = new System.Windows.Forms.Label();
+            this.chkFormatAdditionalDisks = new System.Windows.Forms.CheckBox();
             this.lblPlatform = new System.Windows.Forms.Label();
             this.cmbPlatform = new System.Windows.Forms.ComboBox();
             this.lblDriverPackPath = new System.Windows.Forms.Label();
@@ -123,34 +125,36 @@
             this.tableLayoutPanelMain.Controls.Add(this.numImageIndex, 1, 3);
             this.tableLayoutPanelMain.Controls.Add(this.lblTargetDisk, 0, 4);
             this.tableLayoutPanelMain.Controls.Add(this.numTargetDisk, 1, 4);
-            this.tableLayoutPanelMain.Controls.Add(this.lblPlatform, 0, 5);
-            this.tableLayoutPanelMain.Controls.Add(this.cmbPlatform, 1, 5);
-            this.tableLayoutPanelMain.Controls.Add(this.lblDriverPackPath, 0, 6);
-            this.tableLayoutPanelMain.Controls.Add(this.txtDriverPackPath, 1, 6);
-            this.tableLayoutPanelMain.Controls.Add(this.btnBrowseDriver, 2, 6);
-            this.tableLayoutPanelMain.Controls.Add(this.lblUnattendTemplatePath, 0, 7);
-            this.tableLayoutPanelMain.Controls.Add(this.txtUnattendTemplatePath, 1, 7);
-            this.tableLayoutPanelMain.Controls.Add(this.btnBrowseUnattend, 2, 7);
-            this.tableLayoutPanelMain.Controls.Add(this.lblOdjBlobPath, 0, 8);
-            this.tableLayoutPanelMain.Controls.Add(this.txtOdjBlobPath, 1, 8);
-            this.tableLayoutPanelMain.Controls.Add(this.btnBrowseOdj, 2, 8);
-            this.tableLayoutPanelMain.Controls.Add(this.chkStaticIp, 0, 9);
-            this.tableLayoutPanelMain.Controls.Add(this.lblStaticIp, 0, 10);
-            this.tableLayoutPanelMain.Controls.Add(this.txtStaticIp, 1, 10);
-            this.tableLayoutPanelMain.Controls.Add(this.lblStaticSubnet, 0, 11);
-            this.tableLayoutPanelMain.Controls.Add(this.txtStaticSubnet, 1, 11);
-            this.tableLayoutPanelMain.Controls.Add(this.lblStaticGateway, 0, 12);
-            this.tableLayoutPanelMain.Controls.Add(this.txtStaticGateway, 1, 12);
-            this.tableLayoutPanelMain.Controls.Add(this.lblStaticDns, 0, 13);
-            this.tableLayoutPanelMain.Controls.Add(this.txtStaticDns, 1, 13);
-            this.tableLayoutPanelMain.Controls.Add(this.lblSavePath, 0, 14);
-            this.tableLayoutPanelMain.Controls.Add(this.txtSavePath, 1, 14);
-            this.tableLayoutPanelMain.Controls.Add(this.btnBrowseSave, 2, 14);
+            this.tableLayoutPanelMain.Controls.Add(this.lblFormatAdditionalDisks, 0, 5);
+            this.tableLayoutPanelMain.Controls.Add(this.chkFormatAdditionalDisks, 1, 5);
+            this.tableLayoutPanelMain.Controls.Add(this.lblPlatform, 0, 6);
+            this.tableLayoutPanelMain.Controls.Add(this.cmbPlatform, 1, 6);
+            this.tableLayoutPanelMain.Controls.Add(this.lblDriverPackPath, 0, 7);
+            this.tableLayoutPanelMain.Controls.Add(this.txtDriverPackPath, 1, 7);
+            this.tableLayoutPanelMain.Controls.Add(this.btnBrowseDriver, 2, 7);
+            this.tableLayoutPanelMain.Controls.Add(this.lblUnattendTemplatePath, 0, 8);
+            this.tableLayoutPanelMain.Controls.Add(this.txtUnattendTemplatePath, 1, 8);
+            this.tableLayoutPanelMain.Controls.Add(this.btnBrowseUnattend, 2, 8);
+            this.tableLayoutPanelMain.Controls.Add(this.lblOdjBlobPath, 0, 9);
+            this.tableLayoutPanelMain.Controls.Add(this.txtOdjBlobPath, 1, 9);
+            this.tableLayoutPanelMain.Controls.Add(this.btnBrowseOdj, 2, 9);
+            this.tableLayoutPanelMain.Controls.Add(this.chkStaticIp, 0, 10);
+            this.tableLayoutPanelMain.Controls.Add(this.lblStaticIp, 0, 11);
+            this.tableLayoutPanelMain.Controls.Add(this.txtStaticIp, 1, 11);
+            this.tableLayoutPanelMain.Controls.Add(this.lblStaticSubnet, 0, 12);
+            this.tableLayoutPanelMain.Controls.Add(this.txtStaticSubnet, 1, 12);
+            this.tableLayoutPanelMain.Controls.Add(this.lblStaticGateway, 0, 13);
+            this.tableLayoutPanelMain.Controls.Add(this.txtStaticGateway, 1, 13);
+            this.tableLayoutPanelMain.Controls.Add(this.lblStaticDns, 0, 14);
+            this.tableLayoutPanelMain.Controls.Add(this.txtStaticDns, 1, 14);
+            this.tableLayoutPanelMain.Controls.Add(this.lblSavePath, 0, 15);
+            this.tableLayoutPanelMain.Controls.Add(this.txtSavePath, 1, 15);
+            this.tableLayoutPanelMain.Controls.Add(this.btnBrowseSave, 2, 15);
             this.tableLayoutPanelMain.Location = new System.Drawing.Point(12, 92);
             this.tableLayoutPanelMain.Margin = new System.Windows.Forms.Padding(12, 16, 12, 0);
             this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
             this.tableLayoutPanelMain.Padding = new System.Windows.Forms.Padding(10, 12, 10, 12);
-            this.tableLayoutPanelMain.RowCount = 15;
+            this.tableLayoutPanelMain.RowCount = 16;
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
@@ -166,7 +170,8 @@
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(876, 478);
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelMain.Size = new System.Drawing.Size(876, 512);
             this.tableLayoutPanelMain.TabIndex = 0;
             // 
             // lblComputerName
@@ -292,14 +297,35 @@
             this.numTargetDisk.Size = new System.Drawing.Size(120, 23);
             this.numTargetDisk.TabIndex = 10;
             // 
+            // lblFormatAdditionalDisks
+            // 
+            this.lblFormatAdditionalDisks.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblFormatAdditionalDisks.AutoSize = true;
+            this.lblFormatAdditionalDisks.Location = new System.Drawing.Point(3, 179);
+            this.lblFormatAdditionalDisks.Name = "lblFormatAdditionalDisks";
+            this.lblFormatAdditionalDisks.Size = new System.Drawing.Size(145, 13);
+            this.lblFormatAdditionalDisks.TabIndex = 11;
+            this.lblFormatAdditionalDisks.Text = "Additional disks (optional)";
+            // 
+            // chkFormatAdditionalDisks
+            // 
+            this.chkFormatAdditionalDisks.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.chkFormatAdditionalDisks.AutoSize = true;
+            this.chkFormatAdditionalDisks.Location = new System.Drawing.Point(222, 177);
+            this.chkFormatAdditionalDisks.Name = "chkFormatAdditionalDisks";
+            this.chkFormatAdditionalDisks.Size = new System.Drawing.Size(248, 19);
+            this.chkFormatAdditionalDisks.TabIndex = 12;
+            this.chkFormatAdditionalDisks.Text = "Format all non-OS disks (destructive wipe)";
+            this.chkFormatAdditionalDisks.UseVisualStyleBackColor = true;
+            // 
             // lblPlatform
             // 
             this.lblPlatform.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblPlatform.AutoSize = true;
-            this.lblPlatform.Location = new System.Drawing.Point(3, 179);
+            this.lblPlatform.Location = new System.Drawing.Point(3, 213);
             this.lblPlatform.Name = "lblPlatform";
             this.lblPlatform.Size = new System.Drawing.Size(60, 13);
-            this.lblPlatform.TabIndex = 11;
+            this.lblPlatform.TabIndex = 13;
             this.lblPlatform.Text = "Platform *";
             // 
             // cmbPlatform
@@ -310,36 +336,36 @@
             this.cmbPlatform.Items.AddRange(new object[] {
             "VMware",
             "Proxmox"});
-            this.cmbPlatform.Location = new System.Drawing.Point(222, 173);
+            this.cmbPlatform.Location = new System.Drawing.Point(222, 207);
             this.cmbPlatform.Name = "cmbPlatform";
             this.cmbPlatform.Size = new System.Drawing.Size(475, 23);
-            this.cmbPlatform.TabIndex = 12;
+            this.cmbPlatform.TabIndex = 14;
             // 
             // lblDriverPackPath
             // 
             this.lblDriverPackPath.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblDriverPackPath.AutoSize = true;
-            this.lblDriverPackPath.Location = new System.Drawing.Point(3, 213);
+            this.lblDriverPackPath.Location = new System.Drawing.Point(3, 247);
             this.lblDriverPackPath.Name = "lblDriverPackPath";
             this.lblDriverPackPath.Size = new System.Drawing.Size(99, 13);
-            this.lblDriverPackPath.TabIndex = 13;
+            this.lblDriverPackPath.TabIndex = 15;
             this.lblDriverPackPath.Text = "Driver Pack Path";
             // 
             // txtDriverPackPath
             // 
             this.txtDriverPackPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDriverPackPath.Location = new System.Drawing.Point(222, 207);
+            this.txtDriverPackPath.Location = new System.Drawing.Point(222, 241);
             this.txtDriverPackPath.Name = "txtDriverPackPath";
             this.txtDriverPackPath.Size = new System.Drawing.Size(475, 23);
-            this.txtDriverPackPath.TabIndex = 14;
+            this.txtDriverPackPath.TabIndex = 16;
             // 
             // btnBrowseDriver
             // 
             this.btnBrowseDriver.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnBrowseDriver.Location = new System.Drawing.Point(703, 205);
+            this.btnBrowseDriver.Location = new System.Drawing.Point(703, 239);
             this.btnBrowseDriver.Name = "btnBrowseDriver";
             this.btnBrowseDriver.Size = new System.Drawing.Size(90, 27);
-            this.btnBrowseDriver.TabIndex = 15;
+            this.btnBrowseDriver.TabIndex = 17;
             this.btnBrowseDriver.Text = "Browse...";
             this.btnBrowseDriver.UseVisualStyleBackColor = true;
             this.btnBrowseDriver.Click += new System.EventHandler(this.BtnBrowseDriver_Click);
@@ -348,27 +374,27 @@
             // 
             this.lblUnattendTemplatePath.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblUnattendTemplatePath.AutoSize = true;
-            this.lblUnattendTemplatePath.Location = new System.Drawing.Point(3, 247);
+            this.lblUnattendTemplatePath.Location = new System.Drawing.Point(3, 281);
             this.lblUnattendTemplatePath.Name = "lblUnattendTemplatePath";
             this.lblUnattendTemplatePath.Size = new System.Drawing.Size(133, 13);
-            this.lblUnattendTemplatePath.TabIndex = 16;
+            this.lblUnattendTemplatePath.TabIndex = 18;
             this.lblUnattendTemplatePath.Text = "Unattend Template Path";
             // 
             // txtUnattendTemplatePath
             // 
             this.txtUnattendTemplatePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUnattendTemplatePath.Location = new System.Drawing.Point(222, 241);
+            this.txtUnattendTemplatePath.Location = new System.Drawing.Point(222, 275);
             this.txtUnattendTemplatePath.Name = "txtUnattendTemplatePath";
             this.txtUnattendTemplatePath.Size = new System.Drawing.Size(475, 23);
-            this.txtUnattendTemplatePath.TabIndex = 17;
+            this.txtUnattendTemplatePath.TabIndex = 19;
             // 
             // btnBrowseUnattend
             // 
             this.btnBrowseUnattend.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnBrowseUnattend.Location = new System.Drawing.Point(703, 239);
+            this.btnBrowseUnattend.Location = new System.Drawing.Point(703, 273);
             this.btnBrowseUnattend.Name = "btnBrowseUnattend";
             this.btnBrowseUnattend.Size = new System.Drawing.Size(90, 27);
-            this.btnBrowseUnattend.TabIndex = 18;
+            this.btnBrowseUnattend.TabIndex = 20;
             this.btnBrowseUnattend.Text = "Browse...";
             this.btnBrowseUnattend.UseVisualStyleBackColor = true;
             this.btnBrowseUnattend.Click += new System.EventHandler(this.BtnBrowseUnattend_Click);
@@ -377,27 +403,27 @@
             // 
             this.lblOdjBlobPath.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblOdjBlobPath.AutoSize = true;
-            this.lblOdjBlobPath.Location = new System.Drawing.Point(3, 281);
+            this.lblOdjBlobPath.Location = new System.Drawing.Point(3, 315);
             this.lblOdjBlobPath.Name = "lblOdjBlobPath";
             this.lblOdjBlobPath.Size = new System.Drawing.Size(77, 13);
-            this.lblOdjBlobPath.TabIndex = 19;
+            this.lblOdjBlobPath.TabIndex = 21;
             this.lblOdjBlobPath.Text = "ODJ Blob Path";
             // 
             // txtOdjBlobPath
             // 
             this.txtOdjBlobPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOdjBlobPath.Location = new System.Drawing.Point(222, 275);
+            this.txtOdjBlobPath.Location = new System.Drawing.Point(222, 309);
             this.txtOdjBlobPath.Name = "txtOdjBlobPath";
             this.txtOdjBlobPath.Size = new System.Drawing.Size(475, 23);
-            this.txtOdjBlobPath.TabIndex = 20;
+            this.txtOdjBlobPath.TabIndex = 22;
             // 
             // btnBrowseOdj
             // 
             this.btnBrowseOdj.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnBrowseOdj.Location = new System.Drawing.Point(703, 273);
+            this.btnBrowseOdj.Location = new System.Drawing.Point(703, 307);
             this.btnBrowseOdj.Name = "btnBrowseOdj";
             this.btnBrowseOdj.Size = new System.Drawing.Size(90, 27);
-            this.btnBrowseOdj.TabIndex = 21;
+            this.btnBrowseOdj.TabIndex = 23;
             this.btnBrowseOdj.Text = "Browse...";
             this.btnBrowseOdj.UseVisualStyleBackColor = true;
             this.btnBrowseOdj.Click += new System.EventHandler(this.BtnBrowseOdj_Click);
@@ -406,10 +432,10 @@
             // 
             this.chkStaticIp.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.chkStaticIp.AutoSize = true;
-            this.chkStaticIp.Location = new System.Drawing.Point(3, 313);
+            this.chkStaticIp.Location = new System.Drawing.Point(3, 347);
             this.chkStaticIp.Name = "chkStaticIp";
             this.chkStaticIp.Size = new System.Drawing.Size(119, 19);
-            this.chkStaticIp.TabIndex = 25;
+            this.chkStaticIp.TabIndex = 24;
             this.chkStaticIp.Text = "Use Static IP (opt)";
             this.chkStaticIp.UseVisualStyleBackColor = true;
             this.chkStaticIp.CheckedChanged += new System.EventHandler(this.ChkStaticIp_CheckedChanged);
@@ -418,103 +444,103 @@
             // 
             this.lblStaticIp.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblStaticIp.AutoSize = true;
-            this.lblStaticIp.Location = new System.Drawing.Point(3, 349);
+            this.lblStaticIp.Location = new System.Drawing.Point(3, 381);
             this.lblStaticIp.Name = "lblStaticIp";
             this.lblStaticIp.Size = new System.Drawing.Size(91, 13);
-            this.lblStaticIp.TabIndex = 26;
+            this.lblStaticIp.TabIndex = 25;
             this.lblStaticIp.Text = "Static IP Address";
             // 
             // txtStaticIp
             // 
             this.txtStaticIp.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtStaticIp.Location = new System.Drawing.Point(222, 345);
+            this.txtStaticIp.Location = new System.Drawing.Point(222, 377);
             this.txtStaticIp.MaxLength = 15;
             this.txtStaticIp.Name = "txtStaticIp";
             this.txtStaticIp.Size = new System.Drawing.Size(220, 23);
-            this.txtStaticIp.TabIndex = 27;
+            this.txtStaticIp.TabIndex = 26;
             // 
             // lblStaticSubnet
             // 
             this.lblStaticSubnet.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblStaticSubnet.AutoSize = true;
-            this.lblStaticSubnet.Location = new System.Drawing.Point(3, 383);
+            this.lblStaticSubnet.Location = new System.Drawing.Point(3, 415);
             this.lblStaticSubnet.Name = "lblStaticSubnet";
             this.lblStaticSubnet.Size = new System.Drawing.Size(94, 13);
-            this.lblStaticSubnet.TabIndex = 28;
+            this.lblStaticSubnet.TabIndex = 27;
             this.lblStaticSubnet.Text = "Static Subnet Mask";
             // 
             // txtStaticSubnet
             // 
             this.txtStaticSubnet.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtStaticSubnet.Location = new System.Drawing.Point(222, 379);
+            this.txtStaticSubnet.Location = new System.Drawing.Point(222, 411);
             this.txtStaticSubnet.MaxLength = 15;
             this.txtStaticSubnet.Name = "txtStaticSubnet";
             this.txtStaticSubnet.Size = new System.Drawing.Size(220, 23);
-            this.txtStaticSubnet.TabIndex = 29;
+            this.txtStaticSubnet.TabIndex = 28;
             // 
             // lblStaticGateway
             // 
             this.lblStaticGateway.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblStaticGateway.AutoSize = true;
-            this.lblStaticGateway.Location = new System.Drawing.Point(3, 417);
+            this.lblStaticGateway.Location = new System.Drawing.Point(3, 449);
             this.lblStaticGateway.Name = "lblStaticGateway";
             this.lblStaticGateway.Size = new System.Drawing.Size(85, 13);
-            this.lblStaticGateway.TabIndex = 30;
+            this.lblStaticGateway.TabIndex = 29;
             this.lblStaticGateway.Text = "Static Gateway";
             // 
             // txtStaticGateway
             // 
             this.txtStaticGateway.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtStaticGateway.Location = new System.Drawing.Point(222, 413);
+            this.txtStaticGateway.Location = new System.Drawing.Point(222, 445);
             this.txtStaticGateway.MaxLength = 15;
             this.txtStaticGateway.Name = "txtStaticGateway";
             this.txtStaticGateway.Size = new System.Drawing.Size(220, 23);
-            this.txtStaticGateway.TabIndex = 31;
+            this.txtStaticGateway.TabIndex = 30;
             // 
             // lblStaticDns
             // 
             this.lblStaticDns.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblStaticDns.AutoSize = true;
-            this.lblStaticDns.Location = new System.Drawing.Point(3, 451);
+            this.lblStaticDns.Location = new System.Drawing.Point(3, 483);
             this.lblStaticDns.Name = "lblStaticDns";
             this.lblStaticDns.Size = new System.Drawing.Size(121, 13);
-            this.lblStaticDns.TabIndex = 32;
+            this.lblStaticDns.TabIndex = 31;
             this.lblStaticDns.Text = "Static DNS (comma list)";
             // 
             // txtStaticDns
             // 
             this.txtStaticDns.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtStaticDns.Location = new System.Drawing.Point(222, 447);
+            this.txtStaticDns.Location = new System.Drawing.Point(222, 479);
             this.txtStaticDns.MaxLength = 64;
             this.txtStaticDns.Name = "txtStaticDns";
             this.txtStaticDns.Size = new System.Drawing.Size(260, 23);
-            this.txtStaticDns.TabIndex = 33;
+            this.txtStaticDns.TabIndex = 32;
             // 
             // lblSavePath
             // 
             this.lblSavePath.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblSavePath.AutoSize = true;
-            this.lblSavePath.Location = new System.Drawing.Point(3, 485);
+            this.lblSavePath.Location = new System.Drawing.Point(3, 517);
             this.lblSavePath.Name = "lblSavePath";
             this.lblSavePath.Size = new System.Drawing.Size(80, 13);
-            this.lblSavePath.TabIndex = 22;
+            this.lblSavePath.TabIndex = 33;
             this.lblSavePath.Text = "Config Save To";
             // 
             // txtSavePath
             // 
             this.txtSavePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSavePath.Location = new System.Drawing.Point(222, 481);
+            this.txtSavePath.Location = new System.Drawing.Point(222, 513);
             this.txtSavePath.Name = "txtSavePath";
             this.txtSavePath.Size = new System.Drawing.Size(475, 23);
-            this.txtSavePath.TabIndex = 23;
+            this.txtSavePath.TabIndex = 34;
             // 
             // btnBrowseSave
             // 
             this.btnBrowseSave.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnBrowseSave.Location = new System.Drawing.Point(703, 479);
+            this.btnBrowseSave.Location = new System.Drawing.Point(703, 511);
             this.btnBrowseSave.Name = "btnBrowseSave";
             this.btnBrowseSave.Size = new System.Drawing.Size(90, 27);
-            this.btnBrowseSave.TabIndex = 24;
+            this.btnBrowseSave.TabIndex = 35;
             this.btnBrowseSave.Text = "Browse...";
             this.btnBrowseSave.UseVisualStyleBackColor = true;
             this.btnBrowseSave.Click += new System.EventHandler(this.BtnBrowseSave_Click);
@@ -584,10 +610,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(244)))), ((int)(((byte)(248)))));
             this.ClientSize = new System.Drawing.Size(900, 816);
-            this.Controls.Add(this.txtLog);
-            this.Controls.Add(this.panelButtons);
-            this.Controls.Add(this.tableLayoutPanelMain);
             this.Controls.Add(this.panelHeader);
+            this.Controls.Add(this.tableLayoutPanelMain);
+            this.Controls.Add(this.panelButtons);
+            this.Controls.Add(this.txtLog);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.MinimumSize = new System.Drawing.Size(880, 700);
             this.Padding = new System.Windows.Forms.Padding(12);
@@ -623,6 +649,8 @@
         private System.Windows.Forms.NumericUpDown numImageIndex;
         private System.Windows.Forms.Label lblTargetDisk;
         private System.Windows.Forms.NumericUpDown numTargetDisk;
+        private System.Windows.Forms.Label lblFormatAdditionalDisks;
+        private System.Windows.Forms.CheckBox chkFormatAdditionalDisks;
         private System.Windows.Forms.Label lblPlatform;
         private System.Windows.Forms.ComboBox cmbPlatform;
         private System.Windows.Forms.Label lblDriverPackPath;

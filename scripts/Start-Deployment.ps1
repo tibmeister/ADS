@@ -104,6 +104,9 @@ try {
         Set-ADSStaticNetwork -IpAddress $config.StaticIpAddress -SubnetMask $config.StaticSubnetMask -Gateway $config.StaticGateway -DnsServers $dns -WhatIf:$WhatIf
     }
     Invoke-ADSDiskPartition -DiskNumber $config.TargetDisk -WhatIf:$WhatIf
+    if ($config.FormatAdditionalDisks) {
+        Invoke-ADSFormatAdditionalDisks -OsDiskNumber $config.TargetDisk -WhatIf:$WhatIf
+    }
     Invoke-ADSApplyImage -ImagePath $config.ImagePath -ImageIndex $config.ImageIndex -TargetDrive "W:" -WhatIf:$WhatIf
     Invoke-ADSInjectDrivers -TargetDrive "W:" -DriverPath $config.DriverPackPath -WhatIf:$WhatIf
     Invoke-ADSOfflinePackages -TargetDrive "W:" -Packages $config.Packages -WhatIf:$WhatIf
