@@ -13,6 +13,9 @@ namespace ADS.Wizard.Models
         public string DriverPackPath { get; set; }
         public string UnattendTemplatePath { get; set; }
         public string OdjBlobPath { get; set; }
+        public string NetworkSharePath { get; set; }
+        public string NetworkUsername { get; set; }
+        public string NetworkPassword { get; set; }
         public List<string> Packages { get; set; } = new List<string>();
         public List<string> SoftwareInstallers { get; set; } = new List<string>();
         public bool FormatAdditionalDisks { get; set; }

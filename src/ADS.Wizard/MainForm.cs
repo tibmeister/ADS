@@ -87,6 +87,9 @@ namespace ADS.Wizard
             string computerName = txtComputerName.Text.Trim();
             string osVersion = cmbOsVersion.SelectedItem as string;
             string imagePath = txtImagePath.Text.Trim();
+            string networkSharePath = txtNetworkShare.Text.Trim();
+            string networkUsername = txtNetworkUser.Text.Trim();
+            string networkPassword = txtNetworkPassword.Text;
             string platform = cmbPlatform.SelectedItem as string;
 
             if (string.IsNullOrWhiteSpace(computerName))
@@ -107,6 +110,20 @@ namespace ADS.Wizard
             if (string.IsNullOrWhiteSpace(platform))
             {
                 errors.Add("Platform is required.");
+            }
+
+            bool shareProvided = !string.IsNullOrWhiteSpace(networkSharePath);
+            bool userProvided = !string.IsNullOrWhiteSpace(networkUsername);
+            bool passwordProvided = !string.IsNullOrWhiteSpace(networkPassword);
+
+            if (shareProvided && (!userProvided || !passwordProvided))
+            {
+                errors.Add("Network share credentials (username and password) are required when a network share path is provided.");
+            }
+
+            if (!shareProvided && (userProvided || passwordProvided))
+            {
+                errors.Add("Network share path is required when credentials are supplied.");
             }
 
             if (chkStaticIp.Checked)
@@ -139,6 +156,9 @@ namespace ADS.Wizard
                 DriverPackPath = string.IsNullOrWhiteSpace(txtDriverPackPath.Text) ? null : txtDriverPackPath.Text.Trim(),
                 UnattendTemplatePath = string.IsNullOrWhiteSpace(txtUnattendTemplatePath.Text) ? null : txtUnattendTemplatePath.Text.Trim(),
                 OdjBlobPath = string.IsNullOrWhiteSpace(txtOdjBlobPath.Text) ? null : txtOdjBlobPath.Text.Trim(),
+                NetworkSharePath = shareProvided ? networkSharePath : null,
+                NetworkUsername = userProvided ? networkUsername : null,
+                NetworkPassword = passwordProvided ? networkPassword : null,
                 FormatAdditionalDisks = chkFormatAdditionalDisks.Checked,
                 UseStaticIp = chkStaticIp.Checked,
                 StaticIpAddress = string.IsNullOrWhiteSpace(txtStaticIp.Text) ? null : txtStaticIp.Text.Trim(),
@@ -192,9 +212,199 @@ namespace ADS.Wizard
             }
         }
 
+        private string GetAssetStagingRoot()
+        {
+            if (Directory.Exists(@"X:\Deploy"))
+            {
+                return @"X:\Deploy\Assets";
+            }
+
+            return Path.Combine(Path.GetTempPath(), "ADS.Assets");
+        }
+
+        private bool TryStageNetworkAssets(DeploymentConfig config)
+        {
+            if (string.IsNullOrWhiteSpace(config.NetworkSharePath))
+            {
+                return true;
+            }
+
+            var sharePath = config.NetworkSharePath;
+            WriteLog($"Connecting to network share {sharePath} to stage assets...");
+            if (!MapNetworkShare(sharePath, config.NetworkUsername, config.NetworkPassword))
+            {
+                MessageBox.Show("Failed to connect to the network share. Verify credentials and connectivity.", "Network Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            try
+            {
+                string stagingRoot = GetAssetStagingRoot();
+                Directory.CreateDirectory(stagingRoot);
+
+                config.ImagePath = StagePathIfRemote(config.ImagePath, stagingRoot, "image");
+                config.DriverPackPath = StagePathIfRemote(config.DriverPackPath, Path.Combine(stagingRoot, "Drivers"), "driver pack");
+                config.UnattendTemplatePath = StagePathIfRemote(config.UnattendTemplatePath, Path.Combine(stagingRoot, "Unattend"), "unattend template");
+                config.OdjBlobPath = StagePathIfRemote(config.OdjBlobPath, Path.Combine(stagingRoot, "ODJ"), "ODJ blob");
+
+                if (config.Packages != null && config.Packages.Any())
+                {
+                    var stagedPackages = new List<string>();
+                    foreach (var package in config.Packages)
+                    {
+                        stagedPackages.Add(StagePathIfRemote(package, Path.Combine(stagingRoot, "Packages"), "package"));
+                    }
+                    config.Packages = stagedPackages;
+                }
+
+                config.NetworkSharePath = null;
+                config.NetworkUsername = null;
+                config.NetworkPassword = null;
+                WriteLog($"Staging complete. Assets staged under {stagingRoot}.");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to stage assets from the network share: {ex.Message}", "Staging Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                WriteLog($"Staging failed: {ex}");
+                return false;
+            }
+            finally
+            {
+                UnmapNetworkShare(sharePath);
+            }
+        }
+
+        private string StagePathIfRemote(string path, string destinationRoot, string friendlyName)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                return null;
+            }
+
+            if (!path.StartsWith(@"\\", StringComparison.OrdinalIgnoreCase))
+            {
+                return path;
+            }
+
+            try
+            {
+                Directory.CreateDirectory(destinationRoot);
+                string destination;
+                if (Directory.Exists(path))
+                {
+                    destination = Path.Combine(destinationRoot, new DirectoryInfo(path).Name);
+                    CopyDirectory(path, destination);
+                }
+                else if (File.Exists(path))
+                {
+                    destination = Path.Combine(destinationRoot, Path.GetFileName(path));
+                    File.Copy(path, destination, true);
+                }
+                else
+                {
+                    throw new FileNotFoundException($"Path not found: {path}");
+                }
+
+                WriteLog($"Staged {friendlyName} from network share to {destination}");
+                return destination;
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException($"Failed to stage {friendlyName} from {path}: {ex.Message}", ex);
+            }
+        }
+
+        private void CopyDirectory(string sourceDir, string destinationDir)
+        {
+            var dir = new DirectoryInfo(sourceDir);
+            if (!dir.Exists)
+            {
+                throw new DirectoryNotFoundException($"Source directory not found: {sourceDir}");
+            }
+
+            Directory.CreateDirectory(destinationDir);
+            foreach (var file in dir.GetFiles())
+            {
+                string targetFilePath = Path.Combine(destinationDir, file.Name);
+                file.CopyTo(targetFilePath, true);
+            }
+
+            foreach (var subDir in dir.GetDirectories())
+            {
+                string newDestinationDir = Path.Combine(destinationDir, subDir.Name);
+                CopyDirectory(subDir.FullName, newDestinationDir);
+            }
+        }
+
+        private bool MapNetworkShare(string sharePath, string username, string password)
+        {
+            try
+            {
+                var psi = new ProcessStartInfo
+                {
+                    FileName = "cmd.exe",
+                    Arguments = $"/C net use \"{sharePath}\" {(string.IsNullOrWhiteSpace(password) ? "\"\"" : $"\"{password}\"")} {(string.IsNullOrWhiteSpace(username) ? string.Empty : $"/user:\"{username}\"")} /persistent:no",
+                    CreateNoWindow = true,
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true
+                };
+
+                using (var process = Process.Start(psi))
+                {
+                    var output = process?.StandardOutput.ReadToEnd();
+                    var error = process?.StandardError.ReadToEnd();
+                    process?.WaitForExit();
+
+                    if (process == null || process.ExitCode != 0)
+                    {
+                        WriteLog($"Failed to map share {sharePath}. Output: {output} Error: {error}");
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                WriteLog($"Failed to map share {sharePath}: {ex}");
+                return false;
+            }
+        }
+
+        private void UnmapNetworkShare(string sharePath)
+        {
+            if (string.IsNullOrWhiteSpace(sharePath))
+            {
+                return;
+            }
+
+            try
+            {
+                var psi = new ProcessStartInfo
+                {
+                    FileName = "cmd.exe",
+                    Arguments = $"/C net use \"{sharePath}\" /delete /y",
+                    CreateNoWindow = true,
+                    UseShellExecute = false
+                };
+                Process.Start(psi)?.WaitForExit();
+            }
+            catch
+            {
+                // Best effort cleanup
+            }
+        }
+
         private void BtnSaveConfig_Click(object sender, EventArgs e)
         {
             if (!TryBuildConfig(out var config))
+            {
+                return;
+            }
+
+            if (!TryStageNetworkAssets(config))
             {
                 return;
             }
@@ -205,6 +415,11 @@ namespace ADS.Wizard
         private void BtnStartDeployment_Click(object sender, EventArgs e)
         {
             if (!TryBuildConfig(out var config))
+            {
+                return;
+            }
+
+            if (!TryStageNetworkAssets(config))
             {
                 return;
             }
