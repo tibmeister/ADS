@@ -5,6 +5,9 @@
             "label": "Build Wizard (Debug)",
             "type": "shell",
             "command": "msbuild",
+            "windows": {
+                "command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe"
+            },
             "args": [
                 "src/ADS.sln",
                 "/t:Build",
@@ -17,6 +20,9 @@
             "label": "Build Wizard (Release)",
             "type": "shell",
             "command": "msbuild",
+            "windows": {
+                "command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe"
+            },
             "args": [
                 "src/ADS.sln",
                 "/t:Build",

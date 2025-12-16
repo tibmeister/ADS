@@ -17,6 +17,9 @@
 
         private void InitializeComponent()
         {
+            this.panelHeader = new System.Windows.Forms.Panel();
+            this.lblSubtitle = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
             this.lblComputerName = new System.Windows.Forms.Label();
             this.txtComputerName = new System.Windows.Forms.TextBox();
@@ -56,20 +59,59 @@
             this.txtStaticGateway = new System.Windows.Forms.TextBox();
             this.lblStaticDns = new System.Windows.Forms.Label();
             this.txtStaticDns = new System.Windows.Forms.TextBox();
+            this.panelHeader.SuspendLayout();
             this.tableLayoutPanelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numImageIndex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTargetDisk)).BeginInit();
             this.panelButtons.SuspendLayout();
             this.SuspendLayout();
             // 
+            // panelHeader
+            // 
+            this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(72)))), ((int)(((byte)(117)))));
+            this.panelHeader.Controls.Add(this.lblSubtitle);
+            this.panelHeader.Controls.Add(this.lblTitle);
+            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelHeader.Name = "panelHeader";
+            this.panelHeader.Padding = new System.Windows.Forms.Padding(18, 14, 18, 14);
+            this.panelHeader.Size = new System.Drawing.Size(900, 76);
+            this.panelHeader.TabIndex = 3;
+            // 
+            // lblSubtitle
+            // 
+            this.lblSubtitle.AutoSize = true;
+            this.lblSubtitle.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblSubtitle.ForeColor = System.Drawing.Color.Gainsboro;
+            this.lblSubtitle.Location = new System.Drawing.Point(21, 43);
+            this.lblSubtitle.Name = "lblSubtitle";
+            this.lblSubtitle.Size = new System.Drawing.Size(278, 15);
+            this.lblSubtitle.TabIndex = 1;
+            this.lblSubtitle.Text = "Configure deployment inputs and run the automation.";
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(18, 14);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(430, 25);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Automated Deployment and Servicing (ADS)";
+            // 
             // tableLayoutPanelMain
             // 
             this.tableLayoutPanelMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanelMain.AutoSize = true;
+            this.tableLayoutPanelMain.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanelMain.ColumnCount = 3;
-            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
+            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28F));
+            this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52F));
             this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanelMain.BackColor = System.Drawing.Color.White;
             this.tableLayoutPanelMain.Controls.Add(this.lblComputerName, 0, 0);
             this.tableLayoutPanelMain.Controls.Add(this.txtComputerName, 1, 0);
             this.tableLayoutPanelMain.Controls.Add(this.lblOsVersion, 0, 1);
@@ -104,52 +146,55 @@
             this.tableLayoutPanelMain.Controls.Add(this.lblSavePath, 0, 14);
             this.tableLayoutPanelMain.Controls.Add(this.txtSavePath, 1, 14);
             this.tableLayoutPanelMain.Controls.Add(this.btnBrowseSave, 2, 14);
-            this.tableLayoutPanelMain.Location = new System.Drawing.Point(12, 12);
+            this.tableLayoutPanelMain.Location = new System.Drawing.Point(12, 92);
+            this.tableLayoutPanelMain.Margin = new System.Windows.Forms.Padding(12, 16, 12, 0);
             this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
+            this.tableLayoutPanelMain.Padding = new System.Windows.Forms.Padding(10, 12, 10, 12);
             this.tableLayoutPanelMain.RowCount = 15;
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(760, 450);
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanelMain.Size = new System.Drawing.Size(876, 478);
             this.tableLayoutPanelMain.TabIndex = 0;
             // 
             // lblComputerName
             // 
             this.lblComputerName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblComputerName.AutoSize = true;
-            this.lblComputerName.Location = new System.Drawing.Point(3, 8);
+            this.lblComputerName.Location = new System.Drawing.Point(3, 9);
             this.lblComputerName.Name = "lblComputerName";
-            this.lblComputerName.Size = new System.Drawing.Size(106, 13);
+            this.lblComputerName.Size = new System.Drawing.Size(111, 13);
             this.lblComputerName.TabIndex = 0;
             this.lblComputerName.Text = "Computer Name *";
             // 
             // txtComputerName
             // 
-            this.txtComputerName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtComputerName.Location = new System.Drawing.Point(193, 5);
+            this.txtComputerName.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtComputerName.Location = new System.Drawing.Point(222, 6);
+            this.txtComputerName.MaxLength = 15;
             this.txtComputerName.Name = "txtComputerName";
-            this.txtComputerName.Size = new System.Drawing.Size(412, 20);
+            this.txtComputerName.Size = new System.Drawing.Size(220, 23);
             this.txtComputerName.TabIndex = 1;
             // 
             // lblOsVersion
             // 
             this.lblOsVersion.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblOsVersion.AutoSize = true;
-            this.lblOsVersion.Location = new System.Drawing.Point(3, 38);
+            this.lblOsVersion.Location = new System.Drawing.Point(3, 43);
             this.lblOsVersion.Name = "lblOsVersion";
-            this.lblOsVersion.Size = new System.Drawing.Size(71, 13);
+            this.lblOsVersion.Size = new System.Drawing.Size(72, 13);
             this.lblOsVersion.TabIndex = 2;
             this.lblOsVersion.Text = "OS Version *";
             // 
@@ -162,16 +207,16 @@
             "Server2019",
             "Server2022",
             "Server2025"});
-            this.cmbOsVersion.Location = new System.Drawing.Point(193, 34);
+            this.cmbOsVersion.Location = new System.Drawing.Point(222, 37);
             this.cmbOsVersion.Name = "cmbOsVersion";
-            this.cmbOsVersion.Size = new System.Drawing.Size(412, 21);
+            this.cmbOsVersion.Size = new System.Drawing.Size(475, 23);
             this.cmbOsVersion.TabIndex = 3;
             // 
             // lblImagePath
             // 
             this.lblImagePath.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblImagePath.AutoSize = true;
-            this.lblImagePath.Location = new System.Drawing.Point(3, 68);
+            this.lblImagePath.Location = new System.Drawing.Point(3, 77);
             this.lblImagePath.Name = "lblImagePath";
             this.lblImagePath.Size = new System.Drawing.Size(80, 13);
             this.lblImagePath.TabIndex = 4;
@@ -180,17 +225,17 @@
             // txtImagePath
             // 
             this.txtImagePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtImagePath.Location = new System.Drawing.Point(193, 65);
+            this.txtImagePath.Location = new System.Drawing.Point(222, 71);
             this.txtImagePath.Name = "txtImagePath";
-            this.txtImagePath.Size = new System.Drawing.Size(412, 20);
+            this.txtImagePath.Size = new System.Drawing.Size(475, 23);
             this.txtImagePath.TabIndex = 5;
             // 
             // btnBrowseImage
             // 
             this.btnBrowseImage.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnBrowseImage.Location = new System.Drawing.Point(611, 63);
+            this.btnBrowseImage.Location = new System.Drawing.Point(703, 69);
             this.btnBrowseImage.Name = "btnBrowseImage";
-            this.btnBrowseImage.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowseImage.Size = new System.Drawing.Size(90, 27);
             this.btnBrowseImage.TabIndex = 6;
             this.btnBrowseImage.Text = "Browse...";
             this.btnBrowseImage.UseVisualStyleBackColor = true;
@@ -200,7 +245,7 @@
             // 
             this.lblImageIndex.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblImageIndex.AutoSize = true;
-            this.lblImageIndex.Location = new System.Drawing.Point(3, 98);
+            this.lblImageIndex.Location = new System.Drawing.Point(3, 111);
             this.lblImageIndex.Name = "lblImageIndex";
             this.lblImageIndex.Size = new System.Drawing.Size(79, 13);
             this.lblImageIndex.TabIndex = 7;
@@ -209,14 +254,14 @@
             // numImageIndex
             // 
             this.numImageIndex.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.numImageIndex.Location = new System.Drawing.Point(193, 95);
+            this.numImageIndex.Location = new System.Drawing.Point(222, 108);
             this.numImageIndex.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.numImageIndex.Name = "numImageIndex";
-            this.numImageIndex.Size = new System.Drawing.Size(120, 20);
+            this.numImageIndex.Size = new System.Drawing.Size(120, 23);
             this.numImageIndex.TabIndex = 8;
             this.numImageIndex.Value = new decimal(new int[] {
             1,
@@ -228,7 +273,7 @@
             // 
             this.lblTargetDisk.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblTargetDisk.AutoSize = true;
-            this.lblTargetDisk.Location = new System.Drawing.Point(3, 128);
+            this.lblTargetDisk.Location = new System.Drawing.Point(3, 145);
             this.lblTargetDisk.Name = "lblTargetDisk";
             this.lblTargetDisk.Size = new System.Drawing.Size(73, 13);
             this.lblTargetDisk.TabIndex = 9;
@@ -237,21 +282,21 @@
             // numTargetDisk
             // 
             this.numTargetDisk.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.numTargetDisk.Location = new System.Drawing.Point(193, 125);
+            this.numTargetDisk.Location = new System.Drawing.Point(222, 142);
             this.numTargetDisk.Maximum = new decimal(new int[] {
             64,
             0,
             0,
             0});
             this.numTargetDisk.Name = "numTargetDisk";
-            this.numTargetDisk.Size = new System.Drawing.Size(120, 20);
+            this.numTargetDisk.Size = new System.Drawing.Size(120, 23);
             this.numTargetDisk.TabIndex = 10;
             // 
             // lblPlatform
             // 
             this.lblPlatform.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblPlatform.AutoSize = true;
-            this.lblPlatform.Location = new System.Drawing.Point(3, 158);
+            this.lblPlatform.Location = new System.Drawing.Point(3, 179);
             this.lblPlatform.Name = "lblPlatform";
             this.lblPlatform.Size = new System.Drawing.Size(60, 13);
             this.lblPlatform.TabIndex = 11;
@@ -265,16 +310,16 @@
             this.cmbPlatform.Items.AddRange(new object[] {
             "VMware",
             "Proxmox"});
-            this.cmbPlatform.Location = new System.Drawing.Point(193, 154);
+            this.cmbPlatform.Location = new System.Drawing.Point(222, 173);
             this.cmbPlatform.Name = "cmbPlatform";
-            this.cmbPlatform.Size = new System.Drawing.Size(412, 21);
+            this.cmbPlatform.Size = new System.Drawing.Size(475, 23);
             this.cmbPlatform.TabIndex = 12;
             // 
             // lblDriverPackPath
             // 
             this.lblDriverPackPath.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblDriverPackPath.AutoSize = true;
-            this.lblDriverPackPath.Location = new System.Drawing.Point(3, 188);
+            this.lblDriverPackPath.Location = new System.Drawing.Point(3, 213);
             this.lblDriverPackPath.Name = "lblDriverPackPath";
             this.lblDriverPackPath.Size = new System.Drawing.Size(99, 13);
             this.lblDriverPackPath.TabIndex = 13;
@@ -283,17 +328,17 @@
             // txtDriverPackPath
             // 
             this.txtDriverPackPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDriverPackPath.Location = new System.Drawing.Point(193, 185);
+            this.txtDriverPackPath.Location = new System.Drawing.Point(222, 207);
             this.txtDriverPackPath.Name = "txtDriverPackPath";
-            this.txtDriverPackPath.Size = new System.Drawing.Size(412, 20);
+            this.txtDriverPackPath.Size = new System.Drawing.Size(475, 23);
             this.txtDriverPackPath.TabIndex = 14;
             // 
             // btnBrowseDriver
             // 
             this.btnBrowseDriver.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnBrowseDriver.Location = new System.Drawing.Point(611, 183);
+            this.btnBrowseDriver.Location = new System.Drawing.Point(703, 205);
             this.btnBrowseDriver.Name = "btnBrowseDriver";
-            this.btnBrowseDriver.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowseDriver.Size = new System.Drawing.Size(90, 27);
             this.btnBrowseDriver.TabIndex = 15;
             this.btnBrowseDriver.Text = "Browse...";
             this.btnBrowseDriver.UseVisualStyleBackColor = true;
@@ -303,7 +348,7 @@
             // 
             this.lblUnattendTemplatePath.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblUnattendTemplatePath.AutoSize = true;
-            this.lblUnattendTemplatePath.Location = new System.Drawing.Point(3, 218);
+            this.lblUnattendTemplatePath.Location = new System.Drawing.Point(3, 247);
             this.lblUnattendTemplatePath.Name = "lblUnattendTemplatePath";
             this.lblUnattendTemplatePath.Size = new System.Drawing.Size(133, 13);
             this.lblUnattendTemplatePath.TabIndex = 16;
@@ -312,17 +357,17 @@
             // txtUnattendTemplatePath
             // 
             this.txtUnattendTemplatePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUnattendTemplatePath.Location = new System.Drawing.Point(193, 215);
+            this.txtUnattendTemplatePath.Location = new System.Drawing.Point(222, 241);
             this.txtUnattendTemplatePath.Name = "txtUnattendTemplatePath";
-            this.txtUnattendTemplatePath.Size = new System.Drawing.Size(412, 20);
+            this.txtUnattendTemplatePath.Size = new System.Drawing.Size(475, 23);
             this.txtUnattendTemplatePath.TabIndex = 17;
             // 
             // btnBrowseUnattend
             // 
             this.btnBrowseUnattend.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnBrowseUnattend.Location = new System.Drawing.Point(611, 213);
+            this.btnBrowseUnattend.Location = new System.Drawing.Point(703, 239);
             this.btnBrowseUnattend.Name = "btnBrowseUnattend";
-            this.btnBrowseUnattend.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowseUnattend.Size = new System.Drawing.Size(90, 27);
             this.btnBrowseUnattend.TabIndex = 18;
             this.btnBrowseUnattend.Text = "Browse...";
             this.btnBrowseUnattend.UseVisualStyleBackColor = true;
@@ -332,7 +377,7 @@
             // 
             this.lblOdjBlobPath.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblOdjBlobPath.AutoSize = true;
-            this.lblOdjBlobPath.Location = new System.Drawing.Point(3, 248);
+            this.lblOdjBlobPath.Location = new System.Drawing.Point(3, 281);
             this.lblOdjBlobPath.Name = "lblOdjBlobPath";
             this.lblOdjBlobPath.Size = new System.Drawing.Size(77, 13);
             this.lblOdjBlobPath.TabIndex = 19;
@@ -341,17 +386,17 @@
             // txtOdjBlobPath
             // 
             this.txtOdjBlobPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOdjBlobPath.Location = new System.Drawing.Point(193, 245);
+            this.txtOdjBlobPath.Location = new System.Drawing.Point(222, 275);
             this.txtOdjBlobPath.Name = "txtOdjBlobPath";
-            this.txtOdjBlobPath.Size = new System.Drawing.Size(412, 20);
+            this.txtOdjBlobPath.Size = new System.Drawing.Size(475, 23);
             this.txtOdjBlobPath.TabIndex = 20;
             // 
             // btnBrowseOdj
             // 
             this.btnBrowseOdj.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnBrowseOdj.Location = new System.Drawing.Point(611, 243);
+            this.btnBrowseOdj.Location = new System.Drawing.Point(703, 273);
             this.btnBrowseOdj.Name = "btnBrowseOdj";
-            this.btnBrowseOdj.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowseOdj.Size = new System.Drawing.Size(90, 27);
             this.btnBrowseOdj.TabIndex = 21;
             this.btnBrowseOdj.Text = "Browse...";
             this.btnBrowseOdj.UseVisualStyleBackColor = true;
@@ -361,9 +406,9 @@
             // 
             this.chkStaticIp.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.chkStaticIp.AutoSize = true;
-            this.chkStaticIp.Location = new System.Drawing.Point(3, 274);
+            this.chkStaticIp.Location = new System.Drawing.Point(3, 313);
             this.chkStaticIp.Name = "chkStaticIp";
-            this.chkStaticIp.Size = new System.Drawing.Size(114, 17);
+            this.chkStaticIp.Size = new System.Drawing.Size(119, 19);
             this.chkStaticIp.TabIndex = 25;
             this.chkStaticIp.Text = "Use Static IP (opt)";
             this.chkStaticIp.UseVisualStyleBackColor = true;
@@ -373,7 +418,7 @@
             // 
             this.lblStaticIp.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblStaticIp.AutoSize = true;
-            this.lblStaticIp.Location = new System.Drawing.Point(3, 308);
+            this.lblStaticIp.Location = new System.Drawing.Point(3, 349);
             this.lblStaticIp.Name = "lblStaticIp";
             this.lblStaticIp.Size = new System.Drawing.Size(91, 13);
             this.lblStaticIp.TabIndex = 26;
@@ -381,17 +426,18 @@
             // 
             // txtStaticIp
             // 
-            this.txtStaticIp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtStaticIp.Location = new System.Drawing.Point(193, 305);
+            this.txtStaticIp.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtStaticIp.Location = new System.Drawing.Point(222, 345);
+            this.txtStaticIp.MaxLength = 15;
             this.txtStaticIp.Name = "txtStaticIp";
-            this.txtStaticIp.Size = new System.Drawing.Size(412, 20);
+            this.txtStaticIp.Size = new System.Drawing.Size(220, 23);
             this.txtStaticIp.TabIndex = 27;
             // 
             // lblStaticSubnet
             // 
             this.lblStaticSubnet.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblStaticSubnet.AutoSize = true;
-            this.lblStaticSubnet.Location = new System.Drawing.Point(3, 338);
+            this.lblStaticSubnet.Location = new System.Drawing.Point(3, 383);
             this.lblStaticSubnet.Name = "lblStaticSubnet";
             this.lblStaticSubnet.Size = new System.Drawing.Size(94, 13);
             this.lblStaticSubnet.TabIndex = 28;
@@ -399,17 +445,18 @@
             // 
             // txtStaticSubnet
             // 
-            this.txtStaticSubnet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtStaticSubnet.Location = new System.Drawing.Point(193, 335);
+            this.txtStaticSubnet.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtStaticSubnet.Location = new System.Drawing.Point(222, 379);
+            this.txtStaticSubnet.MaxLength = 15;
             this.txtStaticSubnet.Name = "txtStaticSubnet";
-            this.txtStaticSubnet.Size = new System.Drawing.Size(412, 20);
+            this.txtStaticSubnet.Size = new System.Drawing.Size(220, 23);
             this.txtStaticSubnet.TabIndex = 29;
             // 
             // lblStaticGateway
             // 
             this.lblStaticGateway.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblStaticGateway.AutoSize = true;
-            this.lblStaticGateway.Location = new System.Drawing.Point(3, 368);
+            this.lblStaticGateway.Location = new System.Drawing.Point(3, 417);
             this.lblStaticGateway.Name = "lblStaticGateway";
             this.lblStaticGateway.Size = new System.Drawing.Size(85, 13);
             this.lblStaticGateway.TabIndex = 30;
@@ -417,35 +464,37 @@
             // 
             // txtStaticGateway
             // 
-            this.txtStaticGateway.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtStaticGateway.Location = new System.Drawing.Point(193, 365);
+            this.txtStaticGateway.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtStaticGateway.Location = new System.Drawing.Point(222, 413);
+            this.txtStaticGateway.MaxLength = 15;
             this.txtStaticGateway.Name = "txtStaticGateway";
-            this.txtStaticGateway.Size = new System.Drawing.Size(412, 20);
+            this.txtStaticGateway.Size = new System.Drawing.Size(220, 23);
             this.txtStaticGateway.TabIndex = 31;
             // 
             // lblStaticDns
             // 
             this.lblStaticDns.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblStaticDns.AutoSize = true;
-            this.lblStaticDns.Location = new System.Drawing.Point(3, 398);
+            this.lblStaticDns.Location = new System.Drawing.Point(3, 451);
             this.lblStaticDns.Name = "lblStaticDns";
-            this.lblStaticDns.Size = new System.Drawing.Size(118, 13);
+            this.lblStaticDns.Size = new System.Drawing.Size(121, 13);
             this.lblStaticDns.TabIndex = 32;
             this.lblStaticDns.Text = "Static DNS (comma list)";
             // 
             // txtStaticDns
             // 
-            this.txtStaticDns.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtStaticDns.Location = new System.Drawing.Point(193, 395);
+            this.txtStaticDns.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtStaticDns.Location = new System.Drawing.Point(222, 447);
+            this.txtStaticDns.MaxLength = 64;
             this.txtStaticDns.Name = "txtStaticDns";
-            this.txtStaticDns.Size = new System.Drawing.Size(412, 20);
+            this.txtStaticDns.Size = new System.Drawing.Size(260, 23);
             this.txtStaticDns.TabIndex = 33;
             // 
             // lblSavePath
             // 
             this.lblSavePath.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblSavePath.AutoSize = true;
-            this.lblSavePath.Location = new System.Drawing.Point(3, 428);
+            this.lblSavePath.Location = new System.Drawing.Point(3, 485);
             this.lblSavePath.Name = "lblSavePath";
             this.lblSavePath.Size = new System.Drawing.Size(80, 13);
             this.lblSavePath.TabIndex = 22;
@@ -454,17 +503,17 @@
             // txtSavePath
             // 
             this.txtSavePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSavePath.Location = new System.Drawing.Point(193, 425);
+            this.txtSavePath.Location = new System.Drawing.Point(222, 481);
             this.txtSavePath.Name = "txtSavePath";
-            this.txtSavePath.Size = new System.Drawing.Size(412, 20);
+            this.txtSavePath.Size = new System.Drawing.Size(475, 23);
             this.txtSavePath.TabIndex = 23;
             // 
             // btnBrowseSave
             // 
             this.btnBrowseSave.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnBrowseSave.Location = new System.Drawing.Point(611, 423);
+            this.btnBrowseSave.Location = new System.Drawing.Point(703, 479);
             this.btnBrowseSave.Name = "btnBrowseSave";
-            this.btnBrowseSave.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowseSave.Size = new System.Drawing.Size(90, 27);
             this.btnBrowseSave.TabIndex = 24;
             this.btnBrowseSave.Text = "Browse...";
             this.btnBrowseSave.UseVisualStyleBackColor = true;
@@ -474,60 +523,79 @@
             // 
             this.panelButtons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelButtons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(239)))), ((int)(((byte)(243)))));
             this.panelButtons.Controls.Add(this.btnStartDeployment);
             this.panelButtons.Controls.Add(this.btnSaveConfig);
-            this.panelButtons.Location = new System.Drawing.Point(12, 474);
+            this.panelButtons.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelButtons.Location = new System.Drawing.Point(12, 12);
+            this.panelButtons.Margin = new System.Windows.Forms.Padding(12, 12, 12, 0);
             this.panelButtons.Name = "panelButtons";
-            this.panelButtons.Size = new System.Drawing.Size(760, 40);
+            this.panelButtons.Padding = new System.Windows.Forms.Padding(12, 8, 12, 8);
+            this.panelButtons.Size = new System.Drawing.Size(876, 48);
             this.panelButtons.TabIndex = 1;
             // 
             // btnStartDeployment
             // 
             this.btnStartDeployment.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnStartDeployment.Location = new System.Drawing.Point(623, 9);
+            this.btnStartDeployment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.btnStartDeployment.FlatAppearance.BorderSize = 0;
+            this.btnStartDeployment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStartDeployment.ForeColor = System.Drawing.Color.White;
+            this.btnStartDeployment.Location = new System.Drawing.Point(727, 10);
             this.btnStartDeployment.Name = "btnStartDeployment";
-            this.btnStartDeployment.Size = new System.Drawing.Size(134, 23);
+            this.btnStartDeployment.Size = new System.Drawing.Size(134, 28);
             this.btnStartDeployment.TabIndex = 1;
             this.btnStartDeployment.Text = "Start Deployment";
-            this.btnStartDeployment.UseVisualStyleBackColor = true;
+            this.btnStartDeployment.UseVisualStyleBackColor = false;
             this.btnStartDeployment.Click += new System.EventHandler(this.BtnStartDeployment_Click);
             // 
             // btnSaveConfig
             // 
             this.btnSaveConfig.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnSaveConfig.Location = new System.Drawing.Point(3, 9);
+            this.btnSaveConfig.BackColor = System.Drawing.Color.White;
+            this.btnSaveConfig.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.btnSaveConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveConfig.Location = new System.Drawing.Point(15, 10);
             this.btnSaveConfig.Name = "btnSaveConfig";
-            this.btnSaveConfig.Size = new System.Drawing.Size(134, 23);
+            this.btnSaveConfig.Size = new System.Drawing.Size(134, 28);
             this.btnSaveConfig.TabIndex = 0;
             this.btnSaveConfig.Text = "Save Configuration";
-            this.btnSaveConfig.UseVisualStyleBackColor = true;
+            this.btnSaveConfig.UseVisualStyleBackColor = false;
             this.btnSaveConfig.Click += new System.EventHandler(this.BtnSaveConfig_Click);
             // 
             // txtLog
             // 
-            this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLog.Location = new System.Drawing.Point(12, 520);
+            this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtLog.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLog.Font = new System.Drawing.Font("Consolas", 9F);
+            this.txtLog.Location = new System.Drawing.Point(12, 614);
+            this.txtLog.Margin = new System.Windows.Forms.Padding(12, 0, 12, 12);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtLog.Size = new System.Drawing.Size(760, 129);
+            this.txtLog.Size = new System.Drawing.Size(876, 190);
             this.txtLog.TabIndex = 2;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(244)))), ((int)(((byte)(248)))));
+            this.ClientSize = new System.Drawing.Size(900, 816);
             this.Controls.Add(this.txtLog);
             this.Controls.Add(this.panelButtons);
             this.Controls.Add(this.tableLayoutPanelMain);
-            this.MinimumSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.panelHeader);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.MinimumSize = new System.Drawing.Size(880, 700);
+            this.Padding = new System.Windows.Forms.Padding(12);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Automated Deployment and Servicing (ADS)";
+            this.panelHeader.ResumeLayout(false);
+            this.panelHeader.PerformLayout();
             this.tableLayoutPanelMain.ResumeLayout(false);
             this.tableLayoutPanelMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numImageIndex)).EndInit();
@@ -540,6 +608,9 @@
 
         #endregion
 
+        private System.Windows.Forms.Panel panelHeader;
+        private System.Windows.Forms.Label lblSubtitle;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
         private System.Windows.Forms.Label lblComputerName;
         private System.Windows.Forms.TextBox txtComputerName;
