@@ -6,6 +6,7 @@
 - Use the **Deployment and Imaging Tools Environment** (elevated) so `copype.cmd`, `MakeWinPEMedia.cmd`, `dism.exe`, and `oscdimg.exe` are on PATH.
 - MSBuild for .NET Framework 4.8 if you need to rebuild the wizard or Workbench.
 - ADS payload folder containing `ADS.Wizard.exe` and the `scripts` directory (Workbench can help assemble this locally).
+  - `Build-WinPE.ps1` writes `startnet.cmd` to call `X:\ADS\scripts\Bootstrapper.ps1`, which runs `wpeinit`, ensures `X:\Deploy`, and launches `ADS.Wizard.exe` automatically at boot.
 
 ## Quick steps (Deployment and Imaging Tools Environment)
 ```cmd
@@ -42,5 +43,6 @@ Notes:
 
 ## Booting and usage
 - Boot target from `C:\WinPE_ADS.iso` (burn to USB/ISO mount).
-- In WinPE, `X:\ADS\ADS.Wizard.exe` is the entry point; logs and `deploy.json` default to `X:\Deploy`.
+- WinPE can auto-start via `startnet.cmd` calling `scripts\Bootstrapper.ps1` to run `wpeinit`, ensure `X:\Deploy`, and launch `X:\ADS\ADS.Wizard.exe`.
+- If launching manually, run `X:\ADS\scripts\Bootstrapper.ps1` or start `X:\ADS\ADS.Wizard.exe`; logs and `deploy.json` default to `X:\Deploy`.
 

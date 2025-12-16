@@ -83,6 +83,7 @@ if ($PSCmdlet.ShouldProcess($WinPERoot, "Create WinPE working directory")) {
 $mediaRoot = Join-Path -Path $WinPERoot -ChildPath "media"
 $destPayload = Join-Path -Path $mediaRoot -ChildPath "ADS"
 $deployDir = Join-Path -Path $mediaRoot -ChildPath "Deploy"
+$startNetPath = Join-Path -Path $mediaRoot -ChildPath "Windows\System32\startnet.cmd"
 
 if ($PSCmdlet.ShouldProcess($destPayload, "Copy ADS payload")) {
     if (-not $WhatIf) {
@@ -92,6 +93,20 @@ if ($PSCmdlet.ShouldProcess($destPayload, "Copy ADS payload")) {
     }
     else {
         Write-Host "WHATIF: Would copy ADS payload from $AdsPayloadPath to $destPayload"
+    }
+}
+
+if ($PSCmdlet.ShouldProcess($startNetPath, "Configure startnet.cmd to launch ADS bootstrapper")) {
+    $startNetContent = @"
+@echo off
+set ADSROOT=X:\ADS
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%ADSROOT%\scripts\Bootstrapper.ps1"
+"@
+    if (-not $WhatIf) {
+        $startNetContent | Set-Content -Path $startNetPath -Encoding ASCII
+    }
+    else {
+        Write-Host "WHATIF: Would write bootstrapper startnet.cmd to $startNetPath"
     }
 }
 
