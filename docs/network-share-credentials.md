@@ -1,6 +1,6 @@
 ## Network Share Usage in ADS
 
-The wizard can pull deployment assets from a network share during WinPE, stage them locally, and then drop the credentials. No share mapping or secrets persist into the deployed OS.
+The wizard can pull deployment assets from a network share during WinPE, stage them locally, and then drop the credentials. No share mapping or secrets persist into the deployed OS. For desktop prep and media creation, use ADS Workbench, which relies on the user's existing share access and does not prompt for credentials.
 
 ### How it works
 - **Wizard input:** Fields for `NetworkSharePath`, `NetworkUsername`, and `NetworkPassword` (masked). Validation requires a full set (path + user + password) or nothing.

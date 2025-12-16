@@ -12,7 +12,7 @@
 
 ## CI/CD
 - `ci.yml` builds on pushes/PRs to `main`.
-- `release.yml` triggers on semver tags (stable and rc), builds artifacts, zips outputs, and creates a GitHub Release. RC tags set `prerelease=true`.
+- `release.yml` triggers on semver tags (stable and rc), builds artifacts, zips outputs (wizard + scripts; include Workbench when distributing desktop tooling), and creates a GitHub Release. RC tags set `prerelease=true`.
 
 ## Stabilization branches (optional)
 - If needed for hardening, create `release/vX.Y` from `main`, protect it while active, and delete it after publishing `vX.Y.Z`.

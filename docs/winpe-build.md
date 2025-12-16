@@ -4,8 +4,8 @@
 - Windows host with administrator rights.
 - Windows ADK installed (Deployment Tools) and the **WinPE add-on** for the same ADK version.
 - Use the **Deployment and Imaging Tools Environment** (elevated) so `copype.cmd`, `MakeWinPEMedia.cmd`, `dism.exe`, and `oscdimg.exe` are on PATH.
-- MSBuild for .NET Framework 4.8 if you need to rebuild the wizard.
-- ADS payload folder containing `ADS.Wizard.exe` and the `scripts` directory.
+- MSBuild for .NET Framework 4.8 if you need to rebuild the wizard or Workbench.
+- ADS payload folder containing `ADS.Wizard.exe` and the `scripts` directory (Workbench can help assemble this locally).
 
 ## Quick steps (Deployment and Imaging Tools Environment)
 ```cmd
@@ -30,13 +30,15 @@ Notes:
 - Requires ADK + WinPE add-on installed; the script checks for `copype.cmd` and `MakeWinPEMedia.cmd`.
 - `-WhatIf` shows actions without modifying disk.
 - The script rebuilds the WinPE working directory each run.
+- `ADS.Workbench` is a desktop GUI that can collect the payload layout and kick off ISO creation using these same inputs.
 
 ## Payload preparation
-- Build the wizard: `nuget restore src/ADS.sln` then `msbuild src/ADS.sln /t:Build /p:Configuration=Release /p:Platform="Any CPU"`.
+- Build the apps: `nuget restore src/ADS.sln` then `msbuild src/ADS.sln /t:Build /p:Configuration=Release /p:Platform="Any CPU"`.
 - Collect payload into a folder, for example:
   - `ADS.Wizard.exe` (and its Release dependencies) from `src/ADS.Wizard/bin/Release/`
   - `scripts\` directory
   - Optional docs for field reference.
+  - `ADS.Workbench.exe` lives in `src/ADS.Workbench/bin/Release/` for desktop prep (not needed on the ISO).
 
 ## Booting and usage
 - Boot target from `C:\WinPE_ADS.iso` (burn to USB/ISO mount).

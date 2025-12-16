@@ -1,7 +1,7 @@
 # Using ADS in WinPE
 
 ## Expected layout in WinPE media
-- Place `ADS.Wizard.exe` and the `scripts` folder on the WinPE ISO (for example under `X:\ADS\`).
+- Place `ADS.Wizard.exe` and the `scripts` folder on the WinPE ISO (for example under `X:\ADS\`). You can prepare this payload manually or via the desktop `ADS.Workbench` when building media.
 - Ensure `X:\Deploy\` exists to collect `deploy.json` and log files.
 - For building custom media, see `docs/winpe-build.md` or run `scripts/Build-WinPE.ps1` after installing the Windows ADK + WinPE add-on.
 
@@ -22,6 +22,7 @@
    - Static IP settings (enable checkbox, then set IP, subnet, gateway, DNS) when DHCP is unavailable
 5) Choose save location for `deploy.json` (defaults to `X:\Deploy\deploy.json` when available).
 6) Click **Start Deployment** to write `deploy.json` and call `scripts/Start-Deployment.ps1`.
+7) (Optional) If assets live on a share, use the staging fields to pull them locally in WinPE; credentials are not persisted.
 
 ## Permissions and credentials
 - The wizard does not persist credentials. Access to UNC paths should be pre-authenticated or handled via WinPE `net use` before launching the wizard.

@@ -226,13 +226,16 @@ namespace ADS.Wizard
         {
             if (string.IsNullOrWhiteSpace(config.NetworkSharePath))
             {
+                UpdateStatus("Ready", false);
                 return true;
             }
 
             var sharePath = config.NetworkSharePath;
+            UpdateStatus($"Connecting to {sharePath}", true);
             WriteLog($"Connecting to network share {sharePath} to stage assets...");
             if (!MapNetworkShare(sharePath, config.NetworkUsername, config.NetworkPassword))
             {
+                UpdateStatus("Connection failed", false);
                 MessageBox.Show("Failed to connect to the network share. Verify credentials and connectivity.", "Network Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -261,10 +264,12 @@ namespace ADS.Wizard
                 config.NetworkUsername = null;
                 config.NetworkPassword = null;
                 WriteLog($"Staging complete. Assets staged under {stagingRoot}.");
+                UpdateStatus("Staging complete", false);
                 return true;
             }
             catch (Exception ex)
             {
+                UpdateStatus("Staging failed", false);
                 MessageBox.Show($"Failed to stage assets from the network share: {ex.Message}", "Staging Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 WriteLog($"Staging failed: {ex}");
                 return false;
@@ -294,11 +299,13 @@ namespace ADS.Wizard
                 if (Directory.Exists(path))
                 {
                     destination = Path.Combine(destinationRoot, new DirectoryInfo(path).Name);
+                    UpdateStatus($"Copying {friendlyName} folder...", true);
                     CopyDirectory(path, destination);
                 }
                 else if (File.Exists(path))
                 {
                     destination = Path.Combine(destinationRoot, Path.GetFileName(path));
+                    UpdateStatus($"Copying {friendlyName} file...", true);
                     File.Copy(path, destination, true);
                 }
                 else
@@ -307,10 +314,12 @@ namespace ADS.Wizard
                 }
 
                 WriteLog($"Staged {friendlyName} from network share to {destination}");
+                UpdateStatus($"Staged {friendlyName}", true);
                 return destination;
             }
             catch (Exception ex)
             {
+                UpdateStatus("Staging failed", false);
                 throw new InvalidOperationException($"Failed to stage {friendlyName} from {path}: {ex.Message}", ex);
             }
         }
@@ -360,6 +369,7 @@ namespace ADS.Wizard
                     if (process == null || process.ExitCode != 0)
                     {
                         WriteLog($"Failed to map share {sharePath}. Output: {output} Error: {error}");
+                        UpdateStatus("Connection failed", false);
                         return false;
                     }
                 }
@@ -369,6 +379,7 @@ namespace ADS.Wizard
             catch (Exception ex)
             {
                 WriteLog($"Failed to map share {sharePath}: {ex}");
+                UpdateStatus("Connection failed", false);
                 return false;
             }
         }
@@ -382,6 +393,7 @@ namespace ADS.Wizard
 
             try
             {
+                UpdateStatus("Disconnecting share", true);
                 var psi = new ProcessStartInfo
                 {
                     FileName = "cmd.exe",
@@ -395,6 +407,27 @@ namespace ADS.Wizard
             {
                 // Best effort cleanup
             }
+            finally
+            {
+                UpdateStatus("Ready", false);
+            }
+        }
+
+        private void UpdateStatus(string message, bool busy)
+        {
+            if (statusLabel == null || statusProgress == null)
+            {
+                return;
+            }
+
+            if (statusLabel.GetCurrentParent()?.InvokeRequired == true)
+            {
+                statusLabel.GetCurrentParent().Invoke(new Action(() => UpdateStatus(message, busy)));
+                return;
+            }
+
+            statusLabel.Text = message;
+            statusProgress.Visible = busy;
         }
 
         private void BtnSaveConfig_Click(object sender, EventArgs e)
