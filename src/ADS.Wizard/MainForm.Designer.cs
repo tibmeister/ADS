@@ -47,6 +47,15 @@
             this.btnStartDeployment = new System.Windows.Forms.Button();
             this.btnSaveConfig = new System.Windows.Forms.Button();
             this.txtLog = new System.Windows.Forms.TextBox();
+            this.chkStaticIp = new System.Windows.Forms.CheckBox();
+            this.lblStaticIp = new System.Windows.Forms.Label();
+            this.txtStaticIp = new System.Windows.Forms.TextBox();
+            this.lblStaticSubnet = new System.Windows.Forms.Label();
+            this.txtStaticSubnet = new System.Windows.Forms.TextBox();
+            this.lblStaticGateway = new System.Windows.Forms.Label();
+            this.txtStaticGateway = new System.Windows.Forms.TextBox();
+            this.lblStaticDns = new System.Windows.Forms.Label();
+            this.txtStaticDns = new System.Windows.Forms.TextBox();
             this.tableLayoutPanelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numImageIndex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTargetDisk)).BeginInit();
@@ -83,12 +92,21 @@
             this.tableLayoutPanelMain.Controls.Add(this.lblOdjBlobPath, 0, 8);
             this.tableLayoutPanelMain.Controls.Add(this.txtOdjBlobPath, 1, 8);
             this.tableLayoutPanelMain.Controls.Add(this.btnBrowseOdj, 2, 8);
-            this.tableLayoutPanelMain.Controls.Add(this.lblSavePath, 0, 9);
-            this.tableLayoutPanelMain.Controls.Add(this.txtSavePath, 1, 9);
-            this.tableLayoutPanelMain.Controls.Add(this.btnBrowseSave, 2, 9);
+            this.tableLayoutPanelMain.Controls.Add(this.chkStaticIp, 0, 9);
+            this.tableLayoutPanelMain.Controls.Add(this.lblStaticIp, 0, 10);
+            this.tableLayoutPanelMain.Controls.Add(this.txtStaticIp, 1, 10);
+            this.tableLayoutPanelMain.Controls.Add(this.lblStaticSubnet, 0, 11);
+            this.tableLayoutPanelMain.Controls.Add(this.txtStaticSubnet, 1, 11);
+            this.tableLayoutPanelMain.Controls.Add(this.lblStaticGateway, 0, 12);
+            this.tableLayoutPanelMain.Controls.Add(this.txtStaticGateway, 1, 12);
+            this.tableLayoutPanelMain.Controls.Add(this.lblStaticDns, 0, 13);
+            this.tableLayoutPanelMain.Controls.Add(this.txtStaticDns, 1, 13);
+            this.tableLayoutPanelMain.Controls.Add(this.lblSavePath, 0, 14);
+            this.tableLayoutPanelMain.Controls.Add(this.txtSavePath, 1, 14);
+            this.tableLayoutPanelMain.Controls.Add(this.btnBrowseSave, 2, 14);
             this.tableLayoutPanelMain.Location = new System.Drawing.Point(12, 12);
             this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
-            this.tableLayoutPanelMain.RowCount = 10;
+            this.tableLayoutPanelMain.RowCount = 15;
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
@@ -99,7 +117,12 @@
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(760, 300);
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanelMain.Size = new System.Drawing.Size(760, 450);
             this.tableLayoutPanelMain.TabIndex = 0;
             // 
             // lblComputerName
@@ -334,11 +357,95 @@
             this.btnBrowseOdj.UseVisualStyleBackColor = true;
             this.btnBrowseOdj.Click += new System.EventHandler(this.BtnBrowseOdj_Click);
             // 
+            // chkStaticIp
+            // 
+            this.chkStaticIp.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.chkStaticIp.AutoSize = true;
+            this.chkStaticIp.Location = new System.Drawing.Point(3, 274);
+            this.chkStaticIp.Name = "chkStaticIp";
+            this.chkStaticIp.Size = new System.Drawing.Size(114, 17);
+            this.chkStaticIp.TabIndex = 25;
+            this.chkStaticIp.Text = "Use Static IP (opt)";
+            this.chkStaticIp.UseVisualStyleBackColor = true;
+            this.chkStaticIp.CheckedChanged += new System.EventHandler(this.ChkStaticIp_CheckedChanged);
+            // 
+            // lblStaticIp
+            // 
+            this.lblStaticIp.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblStaticIp.AutoSize = true;
+            this.lblStaticIp.Location = new System.Drawing.Point(3, 308);
+            this.lblStaticIp.Name = "lblStaticIp";
+            this.lblStaticIp.Size = new System.Drawing.Size(91, 13);
+            this.lblStaticIp.TabIndex = 26;
+            this.lblStaticIp.Text = "Static IP Address";
+            // 
+            // txtStaticIp
+            // 
+            this.txtStaticIp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtStaticIp.Location = new System.Drawing.Point(193, 305);
+            this.txtStaticIp.Name = "txtStaticIp";
+            this.txtStaticIp.Size = new System.Drawing.Size(412, 20);
+            this.txtStaticIp.TabIndex = 27;
+            // 
+            // lblStaticSubnet
+            // 
+            this.lblStaticSubnet.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblStaticSubnet.AutoSize = true;
+            this.lblStaticSubnet.Location = new System.Drawing.Point(3, 338);
+            this.lblStaticSubnet.Name = "lblStaticSubnet";
+            this.lblStaticSubnet.Size = new System.Drawing.Size(94, 13);
+            this.lblStaticSubnet.TabIndex = 28;
+            this.lblStaticSubnet.Text = "Static Subnet Mask";
+            // 
+            // txtStaticSubnet
+            // 
+            this.txtStaticSubnet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtStaticSubnet.Location = new System.Drawing.Point(193, 335);
+            this.txtStaticSubnet.Name = "txtStaticSubnet";
+            this.txtStaticSubnet.Size = new System.Drawing.Size(412, 20);
+            this.txtStaticSubnet.TabIndex = 29;
+            // 
+            // lblStaticGateway
+            // 
+            this.lblStaticGateway.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblStaticGateway.AutoSize = true;
+            this.lblStaticGateway.Location = new System.Drawing.Point(3, 368);
+            this.lblStaticGateway.Name = "lblStaticGateway";
+            this.lblStaticGateway.Size = new System.Drawing.Size(85, 13);
+            this.lblStaticGateway.TabIndex = 30;
+            this.lblStaticGateway.Text = "Static Gateway";
+            // 
+            // txtStaticGateway
+            // 
+            this.txtStaticGateway.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtStaticGateway.Location = new System.Drawing.Point(193, 365);
+            this.txtStaticGateway.Name = "txtStaticGateway";
+            this.txtStaticGateway.Size = new System.Drawing.Size(412, 20);
+            this.txtStaticGateway.TabIndex = 31;
+            // 
+            // lblStaticDns
+            // 
+            this.lblStaticDns.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblStaticDns.AutoSize = true;
+            this.lblStaticDns.Location = new System.Drawing.Point(3, 398);
+            this.lblStaticDns.Name = "lblStaticDns";
+            this.lblStaticDns.Size = new System.Drawing.Size(118, 13);
+            this.lblStaticDns.TabIndex = 32;
+            this.lblStaticDns.Text = "Static DNS (comma list)";
+            // 
+            // txtStaticDns
+            // 
+            this.txtStaticDns.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtStaticDns.Location = new System.Drawing.Point(193, 395);
+            this.txtStaticDns.Name = "txtStaticDns";
+            this.txtStaticDns.Size = new System.Drawing.Size(412, 20);
+            this.txtStaticDns.TabIndex = 33;
+            // 
             // lblSavePath
             // 
             this.lblSavePath.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblSavePath.AutoSize = true;
-            this.lblSavePath.Location = new System.Drawing.Point(3, 278);
+            this.lblSavePath.Location = new System.Drawing.Point(3, 428);
             this.lblSavePath.Name = "lblSavePath";
             this.lblSavePath.Size = new System.Drawing.Size(80, 13);
             this.lblSavePath.TabIndex = 22;
@@ -347,7 +454,7 @@
             // txtSavePath
             // 
             this.txtSavePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSavePath.Location = new System.Drawing.Point(193, 275);
+            this.txtSavePath.Location = new System.Drawing.Point(193, 425);
             this.txtSavePath.Name = "txtSavePath";
             this.txtSavePath.Size = new System.Drawing.Size(412, 20);
             this.txtSavePath.TabIndex = 23;
@@ -355,7 +462,7 @@
             // btnBrowseSave
             // 
             this.btnBrowseSave.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnBrowseSave.Location = new System.Drawing.Point(611, 273);
+            this.btnBrowseSave.Location = new System.Drawing.Point(611, 423);
             this.btnBrowseSave.Name = "btnBrowseSave";
             this.btnBrowseSave.Size = new System.Drawing.Size(75, 23);
             this.btnBrowseSave.TabIndex = 24;
@@ -369,7 +476,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelButtons.Controls.Add(this.btnStartDeployment);
             this.panelButtons.Controls.Add(this.btnSaveConfig);
-            this.panelButtons.Location = new System.Drawing.Point(12, 318);
+            this.panelButtons.Location = new System.Drawing.Point(12, 474);
             this.panelButtons.Name = "panelButtons";
             this.panelButtons.Size = new System.Drawing.Size(760, 40);
             this.panelButtons.TabIndex = 1;
@@ -401,12 +508,12 @@
             this.txtLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLog.Location = new System.Drawing.Point(12, 364);
+            this.txtLog.Location = new System.Drawing.Point(12, 520);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtLog.Size = new System.Drawing.Size(760, 185);
+            this.txtLog.Size = new System.Drawing.Size(760, 129);
             this.txtLog.TabIndex = 2;
             // 
             // MainForm
@@ -463,5 +570,14 @@
         private System.Windows.Forms.Button btnStartDeployment;
         private System.Windows.Forms.Button btnSaveConfig;
         private System.Windows.Forms.TextBox txtLog;
+        private System.Windows.Forms.CheckBox chkStaticIp;
+        private System.Windows.Forms.Label lblStaticIp;
+        private System.Windows.Forms.TextBox txtStaticIp;
+        private System.Windows.Forms.Label lblStaticSubnet;
+        private System.Windows.Forms.TextBox txtStaticSubnet;
+        private System.Windows.Forms.Label lblStaticGateway;
+        private System.Windows.Forms.TextBox txtStaticGateway;
+        private System.Windows.Forms.Label lblStaticDns;
+        private System.Windows.Forms.TextBox txtStaticDns;
     }
 }

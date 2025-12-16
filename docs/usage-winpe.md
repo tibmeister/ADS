@@ -19,6 +19,7 @@
    - Driver pack path
    - Unattend template path
    - ODJ blob path (recommended for domain join)
+   - Static IP settings (enable checkbox, then set IP, subnet, gateway, DNS) when DHCP is unavailable
 5) Choose save location for `deploy.json` (defaults to `X:\Deploy\deploy.json` when available).
 6) Click **Start Deployment** to write `deploy.json` and call `scripts/Start-Deployment.ps1`.
 

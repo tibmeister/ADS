@@ -15,5 +15,10 @@ namespace ADS.Wizard.Models
         public string OdjBlobPath { get; set; }
         public List<string> Packages { get; set; } = new List<string>();
         public List<string> SoftwareInstallers { get; set; } = new List<string>();
+        public bool UseStaticIp { get; set; }
+        public string StaticIpAddress { get; set; }
+        public string StaticSubnetMask { get; set; }
+        public string StaticGateway { get; set; }
+        public List<string> StaticDnsServers { get; set; } = new List<string>();
     }
 }

@@ -70,3 +70,4 @@ Outputs:
 - Wizard binary: `src/ADS.Wizard/bin/<Config>/ADS.Wizard.exe`
 - Logs during WinPE/OS runs: `X:\Deploy\ADS.Wizard.log`, `X:\Deploy\ADS.Deployment.log`, `C:\Deploy\PostInstall.log`
 - WinPE ISO example: `C:\WinPE_ADS.iso` containing ADS under `X:\ADS` and writable `X:\Deploy`.
+- Static IP (optional): enable in the wizard and set IP/mask/gateway/DNS; deployment script applies it via netsh before imaging.

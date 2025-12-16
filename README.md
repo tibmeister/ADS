@@ -18,6 +18,7 @@ Automated Deployment and Servicing (ADS) provides a WinPE-friendly wizard to cap
 - Minimal but compiling WinForms wizard targeting .NET Framework 4.8.
 - Deployment/Post-install scripts scaffolded with clear logging and safety guards (`-WhatIf` for destructive steps).
 - CI builds on Windows runners and uploads zipped wizard output; release workflow publishes tagged artifacts.
+- Static IP configuration optional in the wizard when DHCP is not available; ODJ/domain join remains optional.
 
 ## Build and run locally (PowerShell, Windows)
 ```powershell

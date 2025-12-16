@@ -28,6 +28,7 @@ namespace ADS.Wizard
             cmbOsVersion.SelectedIndex = 0;
             cmbPlatform.SelectedIndex = 0;
             txtSavePath.Text = defaultConfigPath;
+            SetStaticFieldsEnabled(false);
             WriteLog("ADS Wizard started.");
         }
 
@@ -108,6 +109,19 @@ namespace ADS.Wizard
                 errors.Add("Platform is required.");
             }
 
+            if (chkStaticIp.Checked)
+            {
+                if (string.IsNullOrWhiteSpace(txtStaticIp.Text))
+                {
+                    errors.Add("Static IP address is required when Static IP is enabled.");
+                }
+
+                if (string.IsNullOrWhiteSpace(txtStaticSubnet.Text))
+                {
+                    errors.Add("Subnet mask is required when Static IP is enabled.");
+                }
+            }
+
             if (errors.Any())
             {
                 MessageBox.Show(string.Join(Environment.NewLine, errors), "Validation Errors", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -124,10 +138,28 @@ namespace ADS.Wizard
                 Platform = platform,
                 DriverPackPath = string.IsNullOrWhiteSpace(txtDriverPackPath.Text) ? null : txtDriverPackPath.Text.Trim(),
                 UnattendTemplatePath = string.IsNullOrWhiteSpace(txtUnattendTemplatePath.Text) ? null : txtUnattendTemplatePath.Text.Trim(),
-                OdjBlobPath = string.IsNullOrWhiteSpace(txtOdjBlobPath.Text) ? null : txtOdjBlobPath.Text.Trim()
+                OdjBlobPath = string.IsNullOrWhiteSpace(txtOdjBlobPath.Text) ? null : txtOdjBlobPath.Text.Trim(),
+                UseStaticIp = chkStaticIp.Checked,
+                StaticIpAddress = string.IsNullOrWhiteSpace(txtStaticIp.Text) ? null : txtStaticIp.Text.Trim(),
+                StaticSubnetMask = string.IsNullOrWhiteSpace(txtStaticSubnet.Text) ? null : txtStaticSubnet.Text.Trim(),
+                StaticGateway = string.IsNullOrWhiteSpace(txtStaticGateway.Text) ? null : txtStaticGateway.Text.Trim(),
+                StaticDnsServers = ParseDnsServers(txtStaticDns.Text)
             };
 
             return true;
+        }
+
+        private List<string> ParseDnsServers(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return new List<string>();
+            }
+
+            return input.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(x => x.Trim())
+                        .Where(x => !string.IsNullOrWhiteSpace(x))
+                        .ToList();
         }
 
         private string SaveConfig(DeploymentConfig config)
@@ -295,6 +327,19 @@ namespace ADS.Wizard
         private void BtnBrowseSave_Click(object sender, EventArgs e)
         {
             BrowseForPath(txtSavePath, true);
+        }
+
+        private void ChkStaticIp_CheckedChanged(object sender, EventArgs e)
+        {
+            SetStaticFieldsEnabled(chkStaticIp.Checked);
+        }
+
+        private void SetStaticFieldsEnabled(bool enabled)
+        {
+            txtStaticIp.Enabled = enabled;
+            txtStaticSubnet.Enabled = enabled;
+            txtStaticGateway.Enabled = enabled;
+            txtStaticDns.Enabled = enabled;
         }
 
         private void BrowseForPath(TextBox target, bool isSave)

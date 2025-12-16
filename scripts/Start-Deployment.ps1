@@ -82,6 +82,11 @@ foreach ($key in $required) {
     }
 }
 
+if ($config.UseStaticIp) {
+    if (-not $config.StaticIpAddress) { $missing += "StaticIpAddress" }
+    if (-not $config.StaticSubnetMask) { $missing += "StaticSubnetMask" }
+}
+
 if ($missing.Count -gt 0) {
     Write-ADSLog -Message "Missing required config values: $($missing -join ', ')" -Level "ERROR"
     Stop-ADSDeployment -Code 4
@@ -91,6 +96,13 @@ Write-ADSLog -Message "Deployment for $($config.ComputerName) targeting disk $($
 
 try {
     Invoke-ADSNetworkingInit -WhatIf:$WhatIf
+    if ($config.UseStaticIp) {
+        $dns = @()
+        if ($config.StaticDnsServers) {
+            $dns = @($config.StaticDnsServers)
+        }
+        Set-ADSStaticNetwork -IpAddress $config.StaticIpAddress -SubnetMask $config.StaticSubnetMask -Gateway $config.StaticGateway -DnsServers $dns -WhatIf:$WhatIf
+    }
     Invoke-ADSDiskPartition -DiskNumber $config.TargetDisk -WhatIf:$WhatIf
     Invoke-ADSApplyImage -ImagePath $config.ImagePath -ImageIndex $config.ImageIndex -TargetDrive "W:" -WhatIf:$WhatIf
     Invoke-ADSInjectDrivers -TargetDrive "W:" -DriverPath $config.DriverPackPath -WhatIf:$WhatIf

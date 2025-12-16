@@ -21,6 +21,11 @@ Wizard output `deploy.json` schema:
 - `DriverPackPath` (string, optional)
 - `UnattendTemplatePath` (string, optional)
 - `OdjBlobPath` (string, optional)
+- `UseStaticIp` (bool, optional; default DHCP)
+- `StaticIpAddress` (string, required when `UseStaticIp` is true)
+- `StaticSubnetMask` (string, required when `UseStaticIp` is true)
+- `StaticGateway` (string, optional)
+- `StaticDnsServers` (array of strings, optional)
 - `Packages` (array of strings, optional)
 - `SoftwareInstallers` (array of strings, optional)
 

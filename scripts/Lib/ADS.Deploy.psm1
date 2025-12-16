@@ -102,6 +102,58 @@ exit
     Invoke-ADSExternalCommand -FilePath "diskpart.exe" -Arguments "/s `"$scriptPath`"" | Out-Null
 }
 
+function Set-ADSStaticNetwork {
+    <#
+    .SYNOPSIS
+    Applies static IP settings in WinPE.
+    .DESCRIPTION
+    Configures IP, subnet, gateway, and DNS on the first up adapter when static settings are provided.
+    .EXAMPLES
+    Set-ADSStaticNetwork -IpAddress "192.168.1.50" -SubnetMask "255.255.255.0" -Gateway "192.168.1.1" -DnsServers @("8.8.8.8","1.1.1.1")
+    .NOTES
+    Uses netsh for compatibility in WinPE. Gateway and DNS are optional.
+    #>
+    param(
+        # Static IP address
+        [Parameter(Mandatory = $true)]
+        [string] $IpAddress,
+        # Subnet mask
+        [Parameter(Mandatory = $true)]
+        [string] $SubnetMask,
+        # Default gateway
+        [string] $Gateway,
+        # DNS servers
+        [string[]] $DnsServers,
+        # When set, only logs intended actions
+        [switch] $WhatIf
+    )
+
+    $adapter = Get-NetAdapter -Physical | Where-Object { $_.Status -eq "Up" } | Sort-Object -Property InterfaceMetric | Select-Object -First 1
+    if (-not $adapter) {
+        $adapter = Get-NetAdapter | Where-Object { $_.Status -eq "Up" } | Sort-Object -Property InterfaceMetric | Select-Object -First 1
+    }
+
+    $name = $adapter?.InterfaceAlias
+    if (-not $name) {
+        $name = "Ethernet"
+        Write-ADSLog -Message "No active adapter found; falling back to interface name '$name' for static IP." -Level "WARN"
+    }
+    $gatewayPart = [string]::IsNullOrWhiteSpace($Gateway) ? "" : " $Gateway 1"
+    $ipArgs = "interface ip set address name=`"$name`" static $IpAddress $SubnetMask$gatewayPart"
+    Invoke-ADSExternalCommand -FilePath "netsh.exe" -Arguments $ipArgs -WhatIf:$WhatIf | Out-Null
+
+    if ($DnsServers -and $DnsServers.Count -gt 0) {
+        $index = 1
+        foreach ($dns in $DnsServers) {
+            $dnsArgs = "interface ip add dns name=`"$name`" addr=$dns index=$index"
+            Invoke-ADSExternalCommand -FilePath "netsh.exe" -Arguments $dnsArgs -WhatIf:$WhatIf | Out-Null
+            $index++
+        }
+    }
+
+    Write-ADSLog -Message "Static IP applied to adapter '$name' (IP $IpAddress/$SubnetMask, Gateway $Gateway, DNS [$($DnsServers -join ', ')])" -Level "INFO"
+}
+
 function Invoke-ADSApplyImage {
     <#
     .SYNOPSIS
@@ -322,4 +374,4 @@ function Invoke-ADSReboot {
     Invoke-ADSExternalCommand -FilePath $wpeutil -Arguments "reboot" -WhatIf:$WhatIf | Out-Null
 }
 
-Export-ModuleMember -Function Invoke-ADSNetworkingInit, Invoke-ADSDiskPartition, Invoke-ADSApplyImage, Invoke-ADSInjectDrivers, Invoke-ADSOfflinePackages, Set-ADSUnattendFile, Set-ADSPostInstallAssets, Invoke-ADSMakeBootable, Invoke-ADSReboot
+Export-ModuleMember -Function Invoke-ADSNetworkingInit, Invoke-ADSDiskPartition, Set-ADSStaticNetwork, Invoke-ADSApplyImage, Invoke-ADSInjectDrivers, Invoke-ADSOfflinePackages, Set-ADSUnattendFile, Set-ADSPostInstallAssets, Invoke-ADSMakeBootable, Invoke-ADSReboot
