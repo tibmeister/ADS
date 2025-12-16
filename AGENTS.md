@@ -71,3 +71,11 @@ Outputs:
 - Logs during WinPE/OS runs: `X:\Deploy\ADS.Wizard.log`, `X:\Deploy\ADS.Deployment.log`, `C:\Deploy\PostInstall.log`
 - WinPE ISO example: `C:\WinPE_ADS.iso` containing ADS under `X:\ADS` and writable `X:\Deploy`.
 - Static IP (optional): enable in the wizard and set IP/mask/gateway/DNS; deployment script applies it via netsh before imaging.
+- ODJ (optional): provide an ODJ blob path; if omitted, domain join is skipped and post-install continues safely.
+
+## Quick validation checklist for a fresh session
+- `rg "UseStaticIp" src scripts` should return occurrences in `MainForm.*`, `DeploymentConfig`, and `Start-Deployment.ps1`.
+- `rg "Set-ADSStaticNetwork" scripts` should show the netsh helper in `scripts/Lib/ADS.Deploy.psm1` and its invocation in `scripts/Start-Deployment.ps1`.
+- `rg "ODJ blob" scripts/PostInstall.ps1` to confirm domain join is optional when no blob exists.
+- Ensure `.vscode/tasks.json` targets `msbuild src/ADS.sln` (Debug/Release). 
+- Verify CI workflows exist: `.github/workflows/ci.yml` and `release.yml`.
