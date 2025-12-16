@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug ADS.Wizard",
+            "type": "clr",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/ADS.Wizard/bin/Debug/ADS.Wizard.exe",
+            "cwd": "${workspaceFolder}/src/ADS.Wizard/bin/Debug",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        }
+    ]
+}

@@ -1,0 +1,44 @@
+# Building WinPE Media with ADS
+
+## Prerequisites
+- Windows host with administrator rights.
+- Windows ADK installed (Deployment Tools) and the **WinPE add-on** for the same ADK version.
+- Use the **Deployment and Imaging Tools Environment** (elevated) so `copype.cmd`, `MakeWinPEMedia.cmd`, `dism.exe`, and `oscdimg.exe` are on PATH.
+- MSBuild for .NET Framework 4.8 if you need to rebuild the wizard.
+- ADS payload folder containing `ADS.Wizard.exe` and the `scripts` directory.
+
+## Quick steps (Deployment and Imaging Tools Environment)
+```cmd
+copype amd64 C:\WinPE_amd64
+robocopy C:\path\to\ADS\payload C:\WinPE_amd64\media\ADS /E
+mkdir C:\WinPE_amd64\media\Deploy
+MakeWinPEMedia /ISO C:\WinPE_amd64 C:\WinPE_ADS.iso
+```
+- The payload folder should include `ADS.Wizard.exe` and `scripts\*`.
+- `MakeWinPEMedia` generates `C:\WinPE_ADS.iso` with ADS under `X:\ADS` and a writable `X:\Deploy` folder on boot.
+
+## Automated script
+Run from the Deployment and Imaging Tools Environment (elevated):
+```powershell
+cd C:\path\to\ADS\repo
+.\scripts\Build-WinPE.ps1 `
+  -AdsPayloadPath "C:\path\to\ADS\payload" `
+  -WinPERoot "C:\WinPE_amd64" `
+  -IsoPath "C:\WinPE_ADS.iso"
+```
+Notes:
+- Requires ADK + WinPE add-on installed; the script checks for `copype.cmd` and `MakeWinPEMedia.cmd`.
+- `-WhatIf` shows actions without modifying disk.
+- The script rebuilds the WinPE working directory each run.
+
+## Payload preparation
+- Build the wizard: `nuget restore src/ADS.sln` then `msbuild src/ADS.sln /t:Build /p:Configuration=Release /p:Platform="Any CPU"`.
+- Collect payload into a folder, for example:
+  - `ADS.Wizard.exe` (and its Release dependencies) from `src/ADS.Wizard/bin/Release/`
+  - `scripts\` directory
+  - Optional docs for field reference.
+
+## Booting and usage
+- Boot target from `C:\WinPE_ADS.iso` (burn to USB/ISO mount).
+- In WinPE, `X:\ADS\ADS.Wizard.exe` is the entry point; logs and `deploy.json` default to `X:\Deploy`.
+

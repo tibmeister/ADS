@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Wizard (Debug)",
+            "type": "shell",
+            "command": "msbuild",
+            "args": [
+                "src/ADS.sln",
+                "/t:Build",
+                "/p:Configuration=Debug"
+            ],
+            "group": "build",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Build Wizard (Release)",
+            "type": "shell",
+            "command": "msbuild",
+            "args": [
+                "src/ADS.sln",
+                "/t:Build",
+                "/p:Configuration=Release"
+            ],
+            "group": "build",
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

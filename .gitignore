@@ -1,0 +1,15 @@
+bin/
+obj/
+packages/
+.vs/
+*.user
+*.suo
+*.cache
+*.log
+*.zip
+.idea/
+.vscode/*.db
+TestResults/
+artifacts/
+/.nuget/
+
