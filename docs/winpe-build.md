@@ -31,7 +31,7 @@ Notes:
 - Requires ADK + WinPE add-on installed; the script checks for `copype.cmd` and `MakeWinPEMedia.cmd`.
 - `-WhatIf` shows actions without modifying disk.
 - The script rebuilds the WinPE working directory each run.
-- `ADS.Workbench` is a desktop GUI that can collect the payload layout and kick off ISO creation using these same inputs.
+- `ADS.Workbench` is a desktop GUI that can collect the payload layout and kick off ISO creation using these same inputs. Its **Front-load assets** option stages a temp copy of the payload and embeds it into the ISO for offline use.
 
 ## Payload preparation
 - Build the apps: `nuget restore src/ADS.sln` then `msbuild src/ADS.sln /t:Build /p:Configuration=Release /p:Platform="Any CPU"`.

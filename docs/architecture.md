@@ -6,7 +6,7 @@
 
 ## Components
 - **ADS.Wizard (WinForms, .NET Framework 4.8)**: Gathers inputs, validates them, writes `deploy.json`, and launches the deployment engine in WinPE.
-- **ADS.Workbench (WinForms, .NET Framework 4.8)**: Desktop prep tool for operators; assembles the payload/layout, collects media build inputs (ADK/WinPE roots, ISO path), and stages assets from shares using the current user’s access.
+- **ADS.Workbench (WinForms, .NET Framework 4.8)**: Desktop prep tool for operators; assembles the payload/layout, collects media build inputs (ADK/WinPE roots, ISO path), and stages assets from shares using the current user’s access. It can front-load payload content into the ISO for offline deployments.
 - **Start-Deployment.ps1**: Non-interactive WinPE deployment orchestrator. Uses DISM, diskpart, and bcdboot. Supports `-WhatIf` for safe dry runs.
 - **PostInstall.ps1**: Runs after first boot via `SetupComplete.cmd`. Idempotent staged runner that applies the ODJ blob and executes placeholder hooks for patching and software installs.
 - **PowerShell modules**: `ADS.Logging` (structured logging), `ADS.Deploy` (WinPE helpers), `ADS.State` (state persistence).

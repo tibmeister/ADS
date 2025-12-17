@@ -34,10 +34,12 @@ Workbench uses your current user’s access (no credential prompts).
    - **Front-load assets:** Check to copy required content into the ISO for offline deployment (larger ISO; no share dependency in the field).
    - **OS image and drivers:** Place your `.wim`/`.esd` and optional driver packs on the share before you build. In WinPE the wizard reads the image path you provide (UNC or front-loaded copy), so put them under the same share and point the wizard at those paths.
 
-4) **Save Settings** (stubbed placeholder) and **Build WinPE ISO** (to be wired to `scripts/Build-WinPE.ps1`).
+4) **Save Settings** writes your inputs to a JSON profile for reuse. **Build WinPE ISO** runs `scripts/Build-WinPE.ps1` with the supplied paths; run Workbench in an elevated Deployment and Imaging Tools Environment so ADK tools are on PATH.
 
-5) **Resulting payload:** ISO containing `ADS.Wizard.exe` + `scripts` under `X:\ADS`, writable `X:\Deploy`, and optionally front-loaded assets.
-6) **WinPE auto-start (optional):** Configure `startnet.cmd` on the media to call `X:\ADS\scripts\Bootstrapper.ps1`, which runs `wpeinit`, ensures `X:\Deploy`, and launches the wizard automatically.
+5) **Front-load assets:** When checked, Workbench stages a temporary copy of the payload and embeds it into the ISO. This enables offline deployment (larger ISO; no share dependency in the field).
+
+6) **Resulting payload:** ISO containing `ADS.Wizard.exe` + `scripts` under `X:\ADS`, writable `X:\Deploy`, and optionally the front-loaded assets you staged.
+7) **WinPE auto-start (optional):** `Build-WinPE.ps1` writes `startnet.cmd` to call `X:\ADS\scripts\Bootstrapper.ps1`, which runs `wpeinit`, ensures `X:\Deploy`, and launches the wizard automatically.
 
 ## Wizard (WinPE) — Collecting deployment settings
 1) Boot from the ADS WinPE ISO/USB (prepared manually or via Workbench).
