@@ -32,6 +32,7 @@ Workbench uses your current user’s access (no credential prompts).
    - **ADK/WinPE Root Dir:** Working directory for WinPE build (e.g., `C:\WinPE_amd64`).
    - **ISO Output Path:** Target ISO path (e.g., `C:\WinPE_ADS.iso`).
    - **Front-load assets:** Check to copy required content into the ISO for offline deployment (larger ISO; no share dependency in the field).
+   - **OS image and drivers:** Place your `.wim`/`.esd` and optional driver packs on the share before you build. In WinPE the wizard reads the image path you provide (UNC or front-loaded copy), so put them under the same share and point the wizard at those paths.
 
 4) **Save Settings** (stubbed placeholder) and **Build WinPE ISO** (to be wired to `scripts/Build-WinPE.ps1`).
 
@@ -108,7 +109,7 @@ robocopy C:\path\to\ADS\payload C:\WinPE_amd64\media\ADS /E
 mkdir C:\WinPE_amd64\media\Deploy
 MakeWinPEMedia /ISO C:\WinPE_amd64 C:\WinPE_ADS.iso
 ```
-Payload: `ADS.Wizard.exe`, `scripts\*` (including `Bootstrapper.ps1`), optional docs, plus any front-loaded assets if desired.
+Payload: `ADS.Wizard.exe`, `scripts\*` (including `Bootstrapper.ps1`), optional docs, plus any front-loaded assets if desired. If front-loading OS files, include the `.wim`/driver folders in the payload directory before running `robocopy`.
 
 ## Security notes
 - Wizard and Workbench do not persist credentials. Use your current user context or pre-auth `net use`.

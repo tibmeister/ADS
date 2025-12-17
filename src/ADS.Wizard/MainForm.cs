@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,17 +20,51 @@ namespace ADS.Wizard
             Formatting = Formatting.Indented,
             NullValueHandling = NullValueHandling.Ignore
         };
+        private const double LogPanelRatio = 0.15;
 
         public MainForm()
         {
             InitializeComponent();
+            this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             defaultConfigPath = GetDefaultConfigPath();
             logPath = GetDefaultLogPath();
             cmbOsVersion.SelectedIndex = 0;
             cmbPlatform.SelectedIndex = 0;
             txtSavePath.Text = defaultConfigPath;
             SetStaticFieldsEnabled(false);
+            PopulateSubnetOptions();
             WriteLog("ADS Wizard started.");
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            ApplyLogPanelRatio();
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            ApplyLogPanelRatio();
+        }
+
+        private void ApplyLogPanelRatio()
+        {
+            if (splitContainerMain == null)
+            {
+                return;
+            }
+
+            int available = splitContainerMain.Height;
+            int desiredLogHeight = (int)Math.Round(available * LogPanelRatio);
+            desiredLogHeight = Math.Max(desiredLogHeight, splitContainerMain.Panel2MinSize);
+
+            int newDistance = available - desiredLogHeight;
+            newDistance = Math.Max(newDistance, 120);
+            newDistance = Math.Min(newDistance, available - splitContainerMain.Panel2MinSize);
+
+            if (newDistance > 0)
+            {
+                splitContainerMain.SplitterDistance = newDistance;
+            }
         }
 
         private static string GetDefaultConfigPath()
@@ -133,7 +168,7 @@ namespace ADS.Wizard
                     errors.Add("Static IP address is required when Static IP is enabled.");
                 }
 
-                if (string.IsNullOrWhiteSpace(txtStaticSubnet.Text))
+                if (cmbStaticSubnet.SelectedItem == null)
                 {
                     errors.Add("Subnet mask is required when Static IP is enabled.");
                 }
@@ -162,7 +197,7 @@ namespace ADS.Wizard
                 FormatAdditionalDisks = chkFormatAdditionalDisks.Checked,
                 UseStaticIp = chkStaticIp.Checked,
                 StaticIpAddress = string.IsNullOrWhiteSpace(txtStaticIp.Text) ? null : txtStaticIp.Text.Trim(),
-                StaticSubnetMask = string.IsNullOrWhiteSpace(txtStaticSubnet.Text) ? null : txtStaticSubnet.Text.Trim(),
+                StaticSubnetMask = GetSelectedSubnetMask(),
                 StaticGateway = string.IsNullOrWhiteSpace(txtStaticGateway.Text) ? null : txtStaticGateway.Text.Trim(),
                 StaticDnsServers = ParseDnsServers(txtStaticDns.Text)
             };
@@ -181,6 +216,85 @@ namespace ADS.Wizard
                         .Select(x => x.Trim())
                         .Where(x => !string.IsNullOrWhiteSpace(x))
                         .ToList();
+        }
+
+        private void PopulateSubnetOptions()
+        {
+            var masks = new[]
+            {
+                ("/32", "255.255.255.255"),
+                ("/31", "255.255.255.254"),
+                ("/30", "255.255.255.252"),
+                ("/29", "255.255.255.248"),
+                ("/28", "255.255.255.240"),
+                ("/27", "255.255.255.224"),
+                ("/26", "255.255.255.192"),
+                ("/25", "255.255.255.128"),
+                ("/24", "255.255.255.0"),
+                ("/23", "255.255.254.0"),
+                ("/22", "255.255.252.0"),
+                ("/21", "255.255.248.0"),
+                ("/20", "255.255.240.0"),
+                ("/19", "255.255.224.0"),
+                ("/18", "255.255.192.0"),
+                ("/17", "255.255.128.0"),
+                ("/16", "255.255.0.0"),
+                ("/15", "255.254.0.0"),
+                ("/14", "255.252.0.0"),
+                ("/13", "255.248.0.0"),
+                ("/12", "255.240.0.0"),
+                ("/11", "255.224.0.0"),
+                ("/10", "255.192.0.0"),
+                ("/9", "255.128.0.0"),
+                ("/8", "255.0.0.0"),
+                ("/7", "254.0.0.0"),
+                ("/6", "252.0.0.0"),
+                ("/5", "248.0.0.0"),
+                ("/4", "240.0.0.0"),
+                ("/3", "224.0.0.0"),
+                ("/2", "192.0.0.0"),
+                ("/1", "128.0.0.0"),
+                ("/0", "0.0.0.0")
+            };
+
+            cmbStaticSubnet.Items.Clear();
+            foreach (var mask in masks)
+            {
+                cmbStaticSubnet.Items.Add($"{mask.Item1} ({mask.Item2})");
+            }
+
+            int defaultIndex = cmbStaticSubnet.Items.IndexOf("/24 (255.255.255.0)");
+            if (defaultIndex >= 0)
+            {
+                cmbStaticSubnet.SelectedIndex = defaultIndex;
+            }
+            else if (cmbStaticSubnet.Items.Count > 0)
+            {
+                cmbStaticSubnet.SelectedIndex = 0;
+            }
+        }
+
+        private string GetSelectedSubnetMask()
+        {
+            if (!chkStaticIp.Checked)
+            {
+                return null;
+            }
+
+            var selected = cmbStaticSubnet.SelectedItem as string;
+            if (string.IsNullOrWhiteSpace(selected))
+            {
+                return null;
+            }
+
+            int start = selected.IndexOf('(');
+            int end = selected.IndexOf(')');
+            if (start >= 0 && end > start)
+            {
+                return selected.Substring(start + 1, end - start - 1);
+            }
+
+            return selected.Trim();
         }
 
         private string SaveConfig(DeploymentConfig config)
@@ -586,7 +700,7 @@ namespace ADS.Wizard
         private void SetStaticFieldsEnabled(bool enabled)
         {
             txtStaticIp.Enabled = enabled;
-            txtStaticSubnet.Enabled = enabled;
+            cmbStaticSubnet.Enabled = enabled;
             txtStaticGateway.Enabled = enabled;
             txtStaticDns.Enabled = enabled;
         }
